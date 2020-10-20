@@ -10,3 +10,7 @@ def main(request):
 def game(request):
 
     return render(request, 'game.html')
+
+def record(request):
+
+    return render(request, 'record.html')

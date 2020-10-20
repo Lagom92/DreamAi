@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/addons/p5.sound.js"></script>
+    
+</head>
+<body>
+    <h1>record</h1>
+</body>
+<script>
+    var mic;
+
+    function setup() {
+        mic = new p5.AudioIn();
+        mic.start();
+    }
+    function draw() {
+        var vol = mic.getLevel();
+        console.log(vol);
+    }
+</script>
+</html>

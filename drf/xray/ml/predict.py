@@ -18,7 +18,7 @@ def predict_CXR(image_path):
 
     feature_vector = feature_model.predict(img)
 
-    prediction = model.predict(feature_vector)[0]
+    prediction = model.predict(feature_vector)
 
     label  = ['COVID','non-COVID']
 

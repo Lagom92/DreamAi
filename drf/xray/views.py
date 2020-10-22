@@ -11,7 +11,7 @@ from .ml.predict import predict_CXR
 @api_view(['GET', 'POST'])
 def predictImage(request):
     if request.method == 'GET':
-        queryset = ChestXray.objects.all()
+        queryset = ChestXray.objects.all().order_by('-id')
         serializer = ChestXraySerializer(queryset, context={"request":request}, many=True)
         return Response(serializer.data)
 

@@ -169,3 +169,6 @@ dmypy.json
 # End of https://www.toptal.com/developers/gitignore/api/python,jupyternotebooks,visualstudiocode
 
 .vscode
+
+/drf/media/*
+/drf/xray/ml/*.h5

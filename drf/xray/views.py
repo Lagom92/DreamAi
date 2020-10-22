@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_400_BAD_REQUEST
 from .models import ChestXray
 from .serializers import ChestXraySerializer
+from .ml.predict import predict_CXR
 
 
 @api_view(['GET', 'POST'])
@@ -16,17 +17,8 @@ def predictImage(request):
 
     elif request.method == 'POST':
         serializer = ChestXraySerializer(data=request.data)
-        # print(serializer.data)
         if serializer.is_valid():
             serializer.save()
-
-            # Image prediction
-            print(serializer)
-            print(serializer.validated_data)
-            serializer.validated_data['prediction'] = "test"
-            serializer.save()
-
-
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
 
@@ -34,7 +26,10 @@ def predictImage(request):
 @api_view(['GET'])
 def detail(request, pk):
     xray = get_object_or_404(ChestXray, pk=pk)
-    print(xray)
+    if xray.prediction == None:
+        prediction = predict_CXR(xray.photo.path)
+        xray.prediction = prediction
+        xray.save()
 
     if request.method == 'GET':
         serializer = ChestXraySerializer(xray, context={"request":request})

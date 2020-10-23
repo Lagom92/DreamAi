@@ -14,15 +14,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.conf.urls.static import static
+from django.conf import settings
+from rest_framework import routers
 from myapp import views
+
+router = routers.DefaultRouter()
+router.register('boards', views.BoardView, 'board')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.main, name='main'),
-
-=======
-    path('game/', views.game, name='game'),
-    path('record/', views.record, name='record'),
->>>>>>> fb88526789ff21fec168a0713be7e34632fce14b
+    path('api/', include(router.urls)),
+    path('predict/', include('xray.urls')),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

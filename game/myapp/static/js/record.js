@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // var song;
 // var amp;
 // var button;
@@ -121,4 +122,5 @@ function canvasPressed() {
     save(soundFile, 'mySound.wav');
     state++;
   }
+
 }

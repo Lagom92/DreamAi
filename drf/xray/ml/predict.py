@@ -4,8 +4,8 @@ from tensorflow.keras.models import load_model
 import numpy as np
 
 def predict_CXR(image_path):
-    model_name = r'C:\Users\Lagom\lagom\DreamAi\drf\xray\ml\covid_model_best_2class.h5'
-    feature_model_name = r'C:\Users\Lagom\lagom\DreamAi\drf\xray\ml\feature_model299.h5'
+    model_name = r'C:\Users\kimji\ai-school\DreamAi\drf\xray\ml\covid_model_best_2class.h5'
+    feature_model_name = r'C:\Users\kimji\ai-school\DreamAi\drf\xray\ml\feature_model299.h5'
 
     model = tf.keras.models.load_model(model_name)
     feature_model = tf.keras.models.load_model(feature_model_name)

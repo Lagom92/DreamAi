@@ -26,7 +26,6 @@ router.register('boards', views.BoardView, 'board')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
     path('token/', obtain_jwt_token),
     path('token/verify/', verify_jwt_token),
     path('token/refresh/', refresh_jwt_token),

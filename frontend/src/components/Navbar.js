@@ -24,12 +24,7 @@ function Navbar() {
   };
 
   // TODO: 로그인 시 로그인 버튼 숨김 
-  const[isLoggedIn, setIsLoggedIn] = useState(true);
-  const hideButton = () => {
-    if (isLoggedIn(true)){
 
-    }
-  };
 
   useEffect(() => {
     showButton();
@@ -38,8 +33,7 @@ function Navbar() {
       window.removeEventListener('resize', showButton)
     ); 
   }, []);
-
-
+  
   return (
     <>
       <IconContext.Provider value={{ color: '#fff' }}>

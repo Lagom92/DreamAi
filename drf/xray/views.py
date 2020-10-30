@@ -11,8 +11,8 @@ from .ml.predict import predict_CXR
 
 
 @api_view(['GET', 'POST'])
-@permission_classes((IsAuthenticated, ))
-@authentication_classes((JSONWebTokenAuthentication, ))
+# @permission_classes((IsAuthenticated, ))
+# @authentication_classes((JSONWebTokenAuthentication, ))
 def predictImage(request):
     if request.method == 'GET':
         queryset = ChestXray.objects.all().order_by('-id')

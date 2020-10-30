@@ -7,7 +7,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from .models import ChestXray
 from .serializers import ChestXraySerializer
-from .ml.predict import predict_CXR
+# from .ml.predict import predict_CXR
+from .apps import XrayConfig
 
 
 @api_view(['GET', 'POST'])
@@ -31,7 +32,7 @@ def predictImage(request):
 def detail(request, pk):
     xray = get_object_or_404(ChestXray, pk=pk)
     if xray.prediction == None:
-        prediction = predict_CXR(xray.photo.path)
+        prediction = XrayConfig.predict_CXR(xray.photo.path)
         xray.prediction = prediction
         xray.save()
 

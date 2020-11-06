@@ -172,3 +172,8 @@ dmypy.json
 
 /drf/media
 /drf/xray/ml/*.h5
+
+documents
+data.zip
+drf.zip
+*.h5

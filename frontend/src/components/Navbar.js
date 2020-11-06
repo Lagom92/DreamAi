@@ -25,7 +25,6 @@ function Navbar() {
 
   // TODO: 로그인 시 로그인 버튼 숨김 
 
-
   useEffect(() => {
     showButton();
     window.addEventListener('resize', showButton);

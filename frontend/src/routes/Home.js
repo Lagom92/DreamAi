@@ -1,6 +1,6 @@
 import React from 'react';
 import HeroSection from '../components/HeroSection';
-import { homeObjOne, homeObjTwo, homeObjThree, homeObjFour } from '../components/HomeData';
+import { homeObjOne, homeObjThree } from '../components/HomeData';
 // import Intro from '../../Intro';
 
 function Home() {
@@ -9,9 +9,9 @@ function Home() {
     <>
       <HeroSection {...homeObjOne} />
       <HeroSection {...homeObjThree} />
-      <HeroSection {...homeObjTwo} />
+      {/* <HeroSection {...homeObjTwo} /> */}
       {/* <Intro /> */}
-      <HeroSection {...homeObjFour} />
+      {/* <HeroSection {...homeObjFour} /> */}
     </>
   );
 }

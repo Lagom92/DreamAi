@@ -7,8 +7,9 @@ class XrayConfig(AppConfig):
 
     # Load DL model
     print("**************** load model ********************")
-    model_name = r'C:\Users\Lagom\lagom\DreamAi\drf\xray\ml\covid_model_best_2class.h5'
-    feature_model_name = r'C:\Users\Lagom\lagom\DreamAi\drf\xray\ml\feature_model299.h5'
+    ML_PATH = "/home/u00u654hgv0t5GGDLF357/workspace/drf/xray/ml/"
+    model_name = ML_PATH + 'covid_model_best_2class.h5'
+    feature_model_name = ML_PATH + 'feature_model299.h5'
 
     global model, feature_model
     model = tf.keras.models.load_model(model_name)

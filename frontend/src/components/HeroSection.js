@@ -15,6 +15,7 @@ function HeroSection({
   alt,
   imgStart,
   linkto,
+  btnId
 }) {
   return (
     <>
@@ -45,7 +46,7 @@ function HeroSection({
                   {description}
                 </p>
                 <Link to={linkto}>
-                  <Button buttonSize='btn--wide' buttonColor='blue'>
+                  <Button btnId={btnId} buttonSize='btn--wide' buttonColor='blue'>
                     {buttonLabel}
                   </Button>
                 </Link>

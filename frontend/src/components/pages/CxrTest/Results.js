@@ -17,7 +17,7 @@ function Results() {
 
         const response = await axios.get(
           // 'http://localhost:8001/api/boards/'
-          'http://localhost:8001/predict/image/'
+          'http://localhost:8000/predict/image/'
         );
         // console.log(response.data);
         setResults(response.data);

@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 import HeroSection from '../../HeroSection';
 import { homeObjOne } from './Data';
 
-function Record() {
+function AudioTest() {
   return (
     <>
       <HeroSection {...homeObjOne} />
@@ -10,4 +10,5 @@ function Record() {
   );
 }
 
-export default Record;
+export default AudioTest;
+

@@ -1,23 +1,18 @@
-from django.shortcuts import render, get_object_or_404
-from rest_framework import serializers, status
-from rest_framework.decorators import api_view, permission_classes, authentication_classes
-from rest_framework.response import Response
+from django.shortcuts import get_object_or_404
+from rest_framework import status
 from rest_framework.status import HTTP_400_BAD_REQUEST
-from .models import ChestXray, CoughAudio
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 from .serializers import ChestXraySerializer, CoughAudioSerializer
+from .models import ChestXray, CoughAudio
 from .apps import XrayConfig
 import matplotlib.pyplot as plt
 import numpy as np
 import librosa.display
 import librosa
-# from rest_framework.permissions import IsAuthenticated
-# from rest_framework_jwt.authentication import JSONWebTokenAuthentication
-# from .ml.predict import predict_CXR
 
 
 @api_view(['GET', 'POST'])
-# @permission_classes((IsAuthenticated, ))
-# @authentication_classes((JSONWebTokenAuthentication, ))
 def predictImage(request):
     if request.method == 'GET':
         queryset = ChestXray.objects.all().order_by('-id')

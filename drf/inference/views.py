@@ -1,23 +1,18 @@
-from django.shortcuts import render, get_object_or_404
-from rest_framework import serializers, status
-from rest_framework.decorators import api_view, permission_classes, authentication_classes
-from rest_framework.response import Response
+from django.shortcuts import get_object_or_404
+from rest_framework import status
 from rest_framework.status import HTTP_400_BAD_REQUEST
-from .models import ChestXray, CoughAudio
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 from .serializers import ChestXraySerializer, CoughAudioSerializer
-from .apps import XrayConfig
+from .models import ChestXray, CoughAudio
+from .apps import InferenceConfig
 import matplotlib.pyplot as plt
 import numpy as np
 import librosa.display
 import librosa
-# from rest_framework.permissions import IsAuthenticated
-# from rest_framework_jwt.authentication import JSONWebTokenAuthentication
-# from .ml.predict import predict_CXR
 
 
 @api_view(['GET', 'POST'])
-# @permission_classes((IsAuthenticated, ))
-# @authentication_classes((JSONWebTokenAuthentication, ))
 def predictImage(request):
     if request.method == 'GET':
         queryset = ChestXray.objects.all().order_by('-id')
@@ -36,7 +31,7 @@ def predictImage(request):
 def detail(request, pk):
     xray = get_object_or_404(ChestXray, pk=pk)
     if xray.prediction == None:
-        prediction = XrayConfig.predict_CXR(xray.photo.path)
+        prediction = InferenceConfig.predict_CXR(xray.photo.path)
         xray.prediction = prediction
         xray.save()
 
@@ -74,7 +69,7 @@ def detailAudio(request, pk):
     # mel save
     plt.savefig(image_path)
     # cough audio predict
-    prediction = XrayConfig.predict_audio(image_path)
+    prediction = InferenceConfig.predict_audio(image_path)
     # save db
     cough.mel = image_path[8:]
     cough.prediction = prediction

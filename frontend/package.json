@@ -22,6 +22,7 @@
     "react-async": "^10.0.1",
     "react-dom": "^17.0.1",
     "react-dropzone": "^11.2.4",
+    "react-dropzone-uploader": "^2.11.0",
     "react-icons": "^3.11.0",
     "react-images-upload": "^1.2.8",
     "react-mic": "^12.4.6",
@@ -29,6 +30,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.0",
     "reactjs-audio-recorder": "^1.0.27",
+    "redux": "^4.0.5",
     "styled-components": "^5.2.1",
     "uuid": "^8.3.1",
     "web-vitals": "^0.2.4"

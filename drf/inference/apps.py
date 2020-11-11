@@ -3,8 +3,7 @@ import tensorflow as tf
 import tensorflow_hub as hub
 import numpy as np
 import matplotlib.pyplot as plt
-import librosa
-import cv2
+# import librosa
 from inference.ml import Seg_modules
 
 class InferenceConfig(AppConfig):
@@ -24,7 +23,7 @@ class InferenceConfig(AppConfig):
     audio_model_name = ML_PATH + "efficientnet_audio_380.h5"
     audio_feature_model_name = ML_PATH +"efficientnet_feature_380.h5"
 
-    global cxr_model, cxr_feature_model, audio_model, audio_feature_model
+    global cxr_model, cxr_feature_model, audio_model, audio_feature_model, seg_model
 
     seg_model = tf.keras.models.load_model(seg_model_name,custom_objects={'dice_coef_loss': Seg_modules.dice_coef_loss,'dice_coef':Seg_modules.dice_coef})
     cxr_feature_model = tf.keras.models.load_model(cxr_feature_model_name)
@@ -38,7 +37,7 @@ class InferenceConfig(AppConfig):
         img_size=(224,224)
         label_list = ('negative','positive')
 
-        cropped_image = Seg_modules.get_cropped_image(image_path, Seg_modules.seg_model)
+        cropped_image = Seg_modules.get_cropped_image(image_path, seg_model)
     
         img = tf.keras.preprocessing.image.array_to_img(cropped_image)
         img = img.resize(img_size)
@@ -81,15 +80,15 @@ class InferenceConfig(AppConfig):
         # return label[idx]
 
     # Cough audio predict function
-    def predict_audio(image_path):
-        label_lst = ['negative','positive']
-        img_size = (380, 380)
-        img = cv2.imread(image_path)
-        img = cv2.resize(img, dsize=img_size)
-        img = img / 255.0
-        img = np.expand_dims(img, axis=0)
-        feature_vector = audio_feature_model.predict(img)
-        pred = audio_model.predict(feature_vector)[0]
-        top_predict = pred.argmax()
+    # def predict_audio(image_path):
+    #     label_lst = ['negative','positive']
+    #     img_size = (380, 380)
+    #     img = cv2.imread(image_path)
+    #     img = cv2.resize(img, dsize=img_size)
+    #     img = img / 255.0
+    #     img = np.expand_dims(img, axis=0)
+    #     feature_vector = audio_feature_model.predict(img)
+    #     pred = audio_model.predict(feature_vector)[0]
+    #     top_predict = pred.argmax()
 
-        return label_lst[top_predict]
+    #     return label_lst[top_predict]

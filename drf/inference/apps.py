@@ -6,13 +6,13 @@ import matplotlib.pyplot as plt
 import librosa
 import cv2
 
-class XrayConfig(AppConfig):
-    name = 'xray'
+class InferenceConfig(AppConfig):
+    name = 'inference'
 
     # Load DL model
     print("**************** load model ********************")
-    # ML_PATH = "/home/u00u654hgv0t5GGDLF357/workspace/drf/xray/ml/"
-    ML_PATH = "./xray/ml/"
+    # ML_PATH = "/home/u00u654hgv0t5GGDLF357/workspace/drf/inference/ml/"
+    ML_PATH = "./inference/ml/"
     cxr_model_name = ML_PATH + 'covid_model_best_2class.h5'
     cxr_feature_model_name = ML_PATH + 'feature_model299.h5'
     audio_model_name = ML_PATH + "efficientnet_audio_380.h5"

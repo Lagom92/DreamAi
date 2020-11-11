@@ -5,7 +5,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import ChestXraySerializer, CoughAudioSerializer
 from .models import ChestXray, CoughAudio
-from .apps import XrayConfig
+from .apps import InferenceConfig
 import matplotlib.pyplot as plt
 import numpy as np
 import librosa.display
@@ -31,7 +31,7 @@ def predictImage(request):
 def detail(request, pk):
     xray = get_object_or_404(ChestXray, pk=pk)
     if xray.prediction == None:
-        prediction = XrayConfig.predict_CXR(xray.photo.path)
+        prediction = InferenceConfig.predict_CXR(xray.photo.path)
         xray.prediction = prediction
         xray.save()
 
@@ -69,7 +69,7 @@ def detailAudio(request, pk):
     # mel save
     plt.savefig(image_path)
     # cough audio predict
-    prediction = XrayConfig.predict_audio(image_path)
+    prediction = InferenceConfig.predict_audio(image_path)
     # save db
     cough.mel = image_path[8:]
     cough.prediction = prediction

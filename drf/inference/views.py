@@ -8,9 +8,9 @@ from .models import ChestXray, CoughAudio
 from .apps import InferenceConfig
 import matplotlib.pyplot as plt
 import numpy as np
-# import librosa.display
-# import librosa
-
+import librosa.display
+import librosa
+import os
 
 @api_view(['GET', 'POST'])
 def predictImage(request):
@@ -57,31 +57,29 @@ def predictAudio(request):
 
 @api_view(['GET'])
 def detailAudio(request, pk):
-    # cough = get_object_or_404(CoughAudio, pk=pk)
-    # audio_path = cough.audio.path
-    # # wav to jpg 
-    # y, sr = librosa.load(audio_path, sr = None)
-    # S = librosa.feature.melspectrogram(y, sr=22050, n_mels=128) 
-    # S_DB = librosa.power_to_db(S, ref=np.max)
-    # img = librosa.display.specshow(S_DB, sr=22050)
-    # title = audio_path.split('\\')[-1][:-4]
-    # image_path = './media/mel/'+ title +'.jpg'
-    # # mel save
-    # plt.savefig(image_path)
-    # # cough audio predict
-    # prediction = InferenceConfig.predict_audio(image_path)
-    # # save db
-    # cough.mel = image_path[8:]
-    # cough.prediction = prediction
-    # cough.save()
+    cough = get_object_or_404(CoughAudio, pk=pk)
+    audio_path = cough.audio.path
+    # wav to jpg 
+    y, sr = librosa.load(audio_path, sr = None)
+    S = librosa.feature.melspectrogram(y, sr=22050, n_mels=128) 
+    S_DB = librosa.power_to_db(S, ref=np.max)
+    img = librosa.display.specshow(S_DB, sr=22050)
+    title = audio_path.split('\\')[-1][:-4]
+    image_path = './media/mel/'+ title +'.jpg'
+    if not os.path.isdir('./media/mel'):
+        os.mkdir('./media/mel')
+    plt.savefig(image_path)
+    prediction = InferenceConfig.predict_audio(image_path)
+    cough.mel = image_path[8:]
+    cough.prediction = prediction
+    cough.save()
 
-    # context = {
-    #     "id": cough.id,
-    #     "audio": "/media/" + str(cough.audio),
-    #     "mel": "/media/" + str(cough.mel),
-    #     "created_at": cough.created_at,
-    #     "prediction": cough.prediction,
-    # }
+    context = {
+        "id": cough.id,
+        "audio": "/media/" + str(cough.audio),
+        "mel": "/media/" + str(cough.mel),
+        "created_at": cough.created_at,
+        "prediction": cough.prediction,
+    }
 
-    # return Response(context)
-    return Response({})
+    return Response(context)

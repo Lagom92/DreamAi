@@ -171,4 +171,6 @@ dmypy.json
 .vscode
 
 /drf/media
-/drf/xray/ml/*.h5
+/drf/inference/ml/*
+
+*/migrations/0*

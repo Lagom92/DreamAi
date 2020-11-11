@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import librosa.display
 import librosa
-
+import os
 
 @api_view(['GET', 'POST'])
 def predictImage(request):
@@ -66,11 +66,10 @@ def detailAudio(request, pk):
     img = librosa.display.specshow(S_DB, sr=22050)
     title = audio_path.split('\\')[-1][:-4]
     image_path = './media/mel/'+ title +'.jpg'
-    # mel save
+    if not os.path.isdir('./media/mel'):
+        os.mkdir('./media/mel')
     plt.savefig(image_path)
-    # cough audio predict
     prediction = InferenceConfig.predict_audio(image_path)
-    # save db
     cough.mel = image_path[8:]
     cough.prediction = prediction
     cough.save()

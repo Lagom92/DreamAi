@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from './Button';
+// import { Button } from './Button';
 import { Link } from 'react-router-dom';
 import '../styles.css';
 import { MdFingerprint } from 'react-icons/md';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { IconContext } from 'react-icons/lib';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGoogle } from "@fortawesome/free-brands-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -22,9 +22,6 @@ function Navbar() {
       setButton(true);
     }
   };
-
-  // TODO: 로그인 시 로그인 버튼 숨김 
-
 
   useEffect(() => {
     showButton();
@@ -54,23 +51,23 @@ function Navbar() {
               </li>
               <li className='nav-item'>
                 <Link
-                  to='/about'
+                  to='/audiotest'
                   className='nav-links'
                   onClick={closeMobileMenu}
                 >
-                  About
+                  Audio
                 </Link>
               </li>
               <li className='nav-item'>
                 <Link
-                  to='/record'
+                  to='/cxrtest'
                   className='nav-links'
                   onClick={closeMobileMenu}
                 >
-                  Record
+                  CXR
                 </Link>
               </li>
-              <li className='nav-btn'>
+              {/* <li className='nav-btn'>
                 {button ? (
                   <Link to='/sign-up' className='btn-link'>
                     <Button buttonStyle='btn--outline'><FontAwesomeIcon icon={faGoogle} /> 로그인</Button>
@@ -86,7 +83,7 @@ function Navbar() {
                     </Button>
                   </Link>
                 )}
-              </li>
+              </li> */}
             </ul>
           </div>
         </nav>

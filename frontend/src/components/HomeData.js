@@ -5,12 +5,12 @@ export const homeObjOne = {
   topLine: '음성인식 인공지능',
   headline: '음성으로 코로나19 진단',
   description:
-    '음성 학습 인공지능을 통하여 코로나19를 진단하기 위한 프로젝트를 진행 중 입니다. 여러분의 음성이 코로나19 종식에 도움이 됩니다.',
-  buttonLabel: '녹음하기',
+    '음성 녹음으로 코로나19 진단을 할 수 있습니다.',
+  buttonLabel: '진단하기',
   imgStart: '',
   img: 'images/record_02.png',
   alt: 'Record',
-  linkto: '/record'
+  linkto: '/audiotest'
 };
 
 export const homeObjTwo = {
@@ -40,7 +40,7 @@ export const homeObjThree = {
   imgStart: 'start',
   img: 'images/xray.png',
   alt: 'CXR-Covid19 test',
-  linkto: '/cxrtest'
+  linkto: '/results'
 };
 
 export const homeObjFour = {

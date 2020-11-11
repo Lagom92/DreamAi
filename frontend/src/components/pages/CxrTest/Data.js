@@ -10,5 +10,5 @@ export const homeObjOne = {
   imgStart: '',
   img: 'images/xray.png',
   alt: '엑스레이로 진단하기',
-  linkto: 'cxrtest'
+  btnId: 'imgUpload'
 };

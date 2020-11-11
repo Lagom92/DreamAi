@@ -12,6 +12,7 @@ export const homeObjOne = {
   imgStart: 'start',
   img: 'images/record.svg',
   alt: '녹음하기',
-  linkto: 'audiotest'
+  linkto: 'audiotest',
+  btnId: 'audioUpload'
 };
 

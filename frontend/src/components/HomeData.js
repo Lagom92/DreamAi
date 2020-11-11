@@ -40,7 +40,7 @@ export const homeObjThree = {
   imgStart: 'start',
   img: 'images/xray.png',
   alt: 'CXR-Covid19 test',
-  linkto: '/results'
+  linkto: '/cxrtest'
 };
 
 export const homeObjFour = {

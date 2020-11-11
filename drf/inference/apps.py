@@ -10,7 +10,7 @@ class InferenceConfig(AppConfig):
     name = 'inference'
 
     # Load DL model
-    print("**************** load model ********************")
+    print("--------------  LOAD MODEL  --------------")
     # ML_PATH = "/home/u00u654hgv0t5GGDLF357/workspace/drf/inference/ml/"
     ML_PATH = "./inference/ml/"
     cxr_model_name = ML_PATH + 'covid_model_best_2class.h5'

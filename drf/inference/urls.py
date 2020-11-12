@@ -8,4 +8,7 @@ urlpatterns = [
 
     path('audio', views.predictAudio, name="predictAudio"),
     path('audio/<int:pk>', views.detailAudio, name="detailAudio"),
+
+    path('multi', views.predictMulti, name="predictMulti"),
+    path('multi/<int:pk>', views.detailMulti, name="detailMulti"),
 ]

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import ChestXray, CoughAudio
+from .models import ChestXray, CoughAudio, MultiData
 
 class ChestXraySerializer(serializers.ModelSerializer):
     photo = serializers.ImageField(use_url=True)
@@ -27,3 +27,9 @@ class CoughAudioSerializer(serializers.ModelSerializer):
     #     mel_url = car.mel.url
         
     #     return request.build_absolute_uri(mel_url)
+
+
+class MultiDataSerializer(serializers.ModelSerializer):    
+    class Meta:
+        model = MultiData
+        fields = '__all__'

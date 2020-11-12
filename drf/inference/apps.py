@@ -8,7 +8,7 @@ class InferenceConfig(AppConfig):
     name = 'inference'
 
     # Load model
-    global seg_model, feature_model, cxr_model, audio_model
+    global seg_model, feature_model, cxr_model, audio_model, multi_model
     ML_PATH = "./inference/ml/"
 
     seg_model_name = ML_PATH + 'seg_model.h5'
@@ -22,6 +22,8 @@ class InferenceConfig(AppConfig):
     feature_model = tf.keras.models.load_model(feature_model_name)
     cxr_model = tf.keras.models.load_model(cxr_model_name)
     audio_model = tf.keras.models.load_model(audio_model_name)
+
+    multi_model = tf.keras.models.load_model(ML_PATH + "multi_model")
 
     # CXR image predict function - TF-TRT
     # def predict_CXR(image_path):

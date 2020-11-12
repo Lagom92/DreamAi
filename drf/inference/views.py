@@ -7,13 +7,12 @@ from .serializers import ChestXraySerializer, CoughAudioSerializer, MultiDataSer
 from .models import ChestXray, CoughAudio, MultiData
 from .apps import InferenceConfig
 from inference.myPredicts import make_wav2img, predict_multiInput
-import matplotlib.pyplot as plt
-import numpy as np
-import librosa.display
-import librosa
-import os
 
 
+'''
+CXR
+list 및 이미지 저장
+'''
 @api_view(['GET', 'POST'])
 def predictImage(request):
     if request.method == 'GET':
@@ -29,6 +28,10 @@ def predictImage(request):
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
 
 
+'''
+CXR
+detail 및 inference
+'''
 @api_view(['GET'])
 def detail(request, pk):
     xray = get_object_or_404(ChestXray, pk=pk)
@@ -41,6 +44,26 @@ def detail(request, pk):
     return Response(serializer.data)
 
 
+'''
+CXR
+가장 최근 저장된 이미지 불러오기 및 inference
+'''
+@api_view(['GET'])
+def newImage(request):
+    xray = ChestXray.objects.last()
+    if xray.prediction == None:
+        prediction = InferenceConfig.predict_CXR(xray.photo.path)
+        xray.prediction = prediction
+        xray.save()
+
+    serializer = ChestXraySerializer(xray, context={"request":request})
+    return Response(serializer.data)
+
+
+'''
+Cough
+list 및 음성 저장
+'''
 @api_view(['GET', 'POST'])
 def predictAudio(request):
     if request.method == 'GET':
@@ -56,6 +79,10 @@ def predictAudio(request):
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
 
 
+'''
+Cough
+detail 및 inference
+'''
 @api_view(['GET'])
 def detailAudio(request, pk):
     cough = get_object_or_404(CoughAudio, pk=pk)
@@ -71,6 +98,29 @@ def detailAudio(request, pk):
     return Response(serializer.data)
 
 
+'''
+Cough
+가장 최근 저장된 음성 불러오기 및 inference
+'''
+@api_view(['GET'])
+def newAudio(request):
+    cough = CoughAudio.objects.last()
+    if cough.prediction == None:
+        audio_path = cough.audio.path
+        image_path = make_wav2img(audio_path)
+        prediction = InferenceConfig.predict_audio(image_path)
+        cough.prediction = prediction
+        cough.mel = image_path[8:]
+        cough.save()
+
+    serializer = CoughAudioSerializer(cough, context={"request":request})
+    return Response(serializer.data)
+
+
+'''
+Multi
+list 및 음성 저장
+'''
 @api_view(['GET', 'POST'])
 def predictMulti(request):
     if request.method == 'GET':
@@ -86,6 +136,10 @@ def predictMulti(request):
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
 
 
+'''
+Multi
+detail 및 inference
+'''
 @api_view(['GET'])
 def detailMulti(request, pk):
     data = get_object_or_404(MultiData, pk=pk)
@@ -98,3 +152,22 @@ def detailMulti(request, pk):
 
     serializer = MultiDataSerializer(data, context={"request":request})
     return Response(serializer.data)
+
+
+'''
+Multi
+가장 최근 저장된 이미지, 음성 불러오기 및 inference
+'''
+@api_view(['GET'])
+def newMulti(request):
+    data = MultiData.objects.last()
+    if data.prediction == None:
+        audio_mel_path = make_wav2img(data.audio.path)
+        prediction = predict_multiInput(data.photo.path, audio_mel_path)
+        data.mel = audio_mel_path[8:]
+        data.prediction = prediction
+        data.save()
+
+    serializer = MultiDataSerializer(data, context={"request":request})
+    return Response(serializer.data)
+

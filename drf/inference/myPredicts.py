@@ -1,13 +1,12 @@
-import numpy as np 
-import tensorflow as tf
-from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from inference.ml import Seg_modules
-from PIL import Image
-import librosa
+from inference import seg_modules
+from inference import apps
 import matplotlib.pyplot as plt
-from inference.apps import *
+import tensorflow as tf
+import numpy as np 
+import librosa.display
+import librosa
 import os
+
 
 # make mel-spectrogram image file
 def make_wav2img(audio_path):
@@ -23,6 +22,7 @@ def make_wav2img(audio_path):
     
     return image_path
 
+
 def image_preprocessing(cropped_image, img_size):
     img = tf.keras.preprocessing.image.array_to_img(cropped_image)
     img = img.resize(img_size)
@@ -32,6 +32,7 @@ def image_preprocessing(cropped_image, img_size):
 
     return img
 
+
 def audio_preprocessing(mel_path, img_size):
     img = tf.keras.preprocessing.image.load_img(mel_path, target_size=img_size)
     img = tf.keras.preprocessing.image.img_to_array(img)
@@ -40,19 +41,20 @@ def audio_preprocessing(mel_path, img_size):
 
     return img
 
+
 def predict_multiInput(image_path, audio_mel_path):
     img_size = (224, 224)
     label = ('negative','positive')
     
-    cropped_image = Seg_modules.get_cropped_image(image_path, seg_model)
+    cropped_image = seg_modules.get_cropped_image(image_path, apps.seg_model)
     cxr_img = image_preprocessing(cropped_image, img_size)
     
     audio_img = audio_preprocessing(audio_mel_path, img_size)
     
-    image_feature_vector = feature_model.predict(cxr_img)
-    audio_feature_vector = feature_model.predict(audio_img)
+    image_feature_vector = apps.feature_model.predict(cxr_img)
+    audio_feature_vector = apps.feature_model.predict(audio_img)
 
-    prediction = multi_model.predict([image_feature_vector, audio_feature_vector])[0]
+    prediction = apps.multi_model.predict([image_feature_vector, audio_feature_vector])[0]
 
     predict = int(np.round(prediction))
 

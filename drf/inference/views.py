@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from .serializers import ChestXraySerializer, CoughAudioSerializer, MultiDataSerializer
 from .models import ChestXray, CoughAudio, MultiData
 from .apps import InferenceConfig
-from inference.multi_pred import make_wav2img, predict_multiInput
+from inference.myPredicts import make_wav2img, predict_multiInput
 import matplotlib.pyplot as plt
 import numpy as np
 import librosa.display
@@ -37,9 +37,8 @@ def detail(request, pk):
         xray.prediction = prediction
         xray.save()
 
-    if request.method == 'GET':
-        serializer = ChestXraySerializer(xray, context={"request":request})
-        return Response(serializer.data)
+    serializer = ChestXraySerializer(xray, context={"request":request})
+    return Response(serializer.data)
 
 
 @api_view(['GET', 'POST'])
@@ -60,30 +59,16 @@ def predictAudio(request):
 @api_view(['GET'])
 def detailAudio(request, pk):
     cough = get_object_or_404(CoughAudio, pk=pk)
-    audio_path = cough.audio.path
-    y, sr = librosa.load(audio_path, sr = None)
-    S = librosa.feature.melspectrogram(y, sr=22050, n_mels=128) 
-    S_DB = librosa.power_to_db(S, ref=np.max)
-    img = librosa.display.specshow(S_DB, sr=22050)
-    title = audio_path.split('\\')[-1][:-4]
-    image_path = './media/mel/'+ title +'.jpg'
-    if not os.path.isdir('./media/mel'):
-        os.mkdir('./media/mel')
-    plt.savefig(image_path)
-    prediction = InferenceConfig.predict_audio(image_path)
-    cough.mel = image_path[8:]
-    cough.prediction = prediction
-    cough.save()
+    if cough.prediction == None:
+        audio_path = cough.audio.path
+        image_path = make_wav2img(audio_path)
+        prediction = InferenceConfig.predict_audio(image_path)
+        cough.prediction = prediction
+        cough.mel = image_path[8:]
+        cough.save()
 
-    context = {
-        "id": cough.id,
-        "audio": "/media/" + str(cough.audio),
-        "mel": "/media/" + str(cough.mel),
-        "created_at": cough.created_at,
-        "prediction": cough.prediction,
-    }
-
-    return Response(context)
+    serializer = CoughAudioSerializer(cough, context={"request":request})
+    return Response(serializer.data)
 
 
 @api_view(['GET', 'POST'])
@@ -99,6 +84,7 @@ def predictMulti(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+
 
 @api_view(['GET'])
 def detailMulti(request, pk):

@@ -41,7 +41,6 @@ def audio_preprocessing(mel_path, img_size):
     return img
 
 def predict_multiInput(image_path, audio_mel_path):
-    
     img_size = (224, 224)
     label = ('negative','positive')
     

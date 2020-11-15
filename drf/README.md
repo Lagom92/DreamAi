@@ -1,7 +1,6 @@
-# BE
+# Beckend REST API
 
 ### using Django rest framework
-
 
 
 <br/>
@@ -19,11 +18,6 @@ pip install librosa
 ```
 
 
-
-
-
-
-
 <br/>
 
 ### API
@@ -32,10 +26,5 @@ pip install librosa
 - 이미지 데이터(CXR)
 
 - 음성 데이터(Audio) 
-
-
-
-
-
 
 <br/>

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'inference',
     'corsheaders',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [

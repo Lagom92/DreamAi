@@ -30,7 +30,7 @@ class InferenceConfig(AppConfig):
 
     multi_model = tf.keras.models.load_model(ML_PATH + "multi_model")
 
-    # CXR image predict function - TF-TRT
+    ''' CXR image predict function with TF-TRT '''
     # def predict_CXR(image_path):
     #     cropped_image = seg_modules.get_cropped_image(image_path, seg_model)
     #     img = image_preprocessing(cropped_image, img_size)
@@ -54,7 +54,7 @@ class InferenceConfig(AppConfig):
     #     return label[idx]
 
 
-    # CXR image predict function - dev
+    ''' CXR image predict function - with TF '''
     def predict_CXR(image_path):
         cropped_image = seg_modules.get_cropped_image(image_path, seg_model)
         img = image_preprocessing(cropped_image, img_size)
@@ -66,7 +66,7 @@ class InferenceConfig(AppConfig):
         return label[idx]
 
 
-    # Cough audio predict function - dev
+    ''' Cough audio predict function with TF '''
     def predict_audio(image_path):
         img = audio_preprocessing(image_path, img_size)
         feature_vector = feature_model.predict(img)

@@ -5,5 +5,6 @@ app_name = 'inferences'
 
 urlpatterns = [
     path('', views.main, name='main'),
+    path('patient/<int:pk>', views.detail, name='detail'),
 
 ]

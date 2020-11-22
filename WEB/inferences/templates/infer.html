@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block body %}
+
+    <h1>infer list</h1>
+    {% for pred in preds %}
+        <img src="{{pred.photo.url}}" alt=""> <br>
+        의사: {{pred.patient.doctor}} <br>
+        환자 이름: {{pred.patient.name}} <br>
+        이미지 입력 날짜: {{pred.created_at}} <br>
+        진단 결과: {{pred.prediction}} <br>
+
+    {% endfor %}
+
+
+{% endblock %}

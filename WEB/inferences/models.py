@@ -31,6 +31,7 @@ class Patient(models.Model):
 class Xray(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name='xray')
     photo = models.ImageField(blank=True, null=True, upload_to="img/%Y%m%d")
+    # audio 추가 예정
     created_at = models.DateTimeField(auto_now_add=True)
     prediction = models.CharField(max_length=100, null=True, blank=True)
     

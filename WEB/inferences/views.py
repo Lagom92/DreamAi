@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .models import Patient
+from .models import Patient, Xray
 
 
 '''환자 목록 페이지'''
@@ -37,3 +37,12 @@ def editInfo(request, pk):
         return redirect('inferences:detail', pk)
 
     return render(request, 'edit_info.html', {'patient':patient})
+
+
+'''inference 결과 리스트 페이지'''
+@login_required
+def infer(request, pk):
+    patient = get_object_or_404(Patient, id=pk)
+    preds = patient.xray.all()
+
+    return render(request, 'infer.html', {'preds':preds})

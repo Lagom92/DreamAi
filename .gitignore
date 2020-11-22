@@ -182,5 +182,5 @@ drf.zip
 *.h5
 
 
-inference/model/
-inference/test_data/
+*/inference/model/
+*/inference/test_data/

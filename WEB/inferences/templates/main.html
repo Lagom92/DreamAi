@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block body %}
+
+    <h1>main</h1>
+
+    {% for patient in patients %}
+        <div>
+            {{patient.code}}, 
+            {{patient.name}}, 
+            {{patient.created_at}}, 
+        </div>
+    {% endfor %}
+
+{% endblock %}

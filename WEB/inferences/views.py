@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Patient
 
@@ -15,8 +15,11 @@ def main(request):
 '''환자 정보 페이지'''
 @login_required
 def detail(request, pk):
-    patient = Patient.objects.get(id=pk)
+    patient = get_object_or_404(Patient, id=pk)
     if request.user != patient.doctor:
         return redirect('inferences:main')
 
     return render(request, 'detail.html', {'patient':patient})
+
+
+    

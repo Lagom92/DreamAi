@@ -53,3 +53,13 @@ def dice_coef(y_true, y_pred):
 
 def dice_coef_loss(y_true, y_pred):
     return 1-dice_coef(y_true, y_pred)
+
+# Detect an CXR's lung location and crop it.
+def get_cropped_image(image_path, model_seg):
+    seg_img = get_seg_img(model_seg,image_path)
+    t, b, l, r = get_boundingbox(seg_img[0])
+    img = tf.keras.preprocessing.image.load_img(image_path, target_size=(512,512))
+    original = tf.keras.preprocessing.image.img_to_array(img)
+    cropped_original = original[t:b+1, l:r+1]
+    
+    return cropped_original

@@ -38,7 +38,7 @@
 
 | 이름   | 담당           | Github                         |
 | ------ | -------------- | ------------------------------ |
-| 김진혁 | FE             | https://github.com/kimjinhyuk  |
+| 김진혁 | FE, Deploy     | https://github.com/kimjinhyuk  |
 | 김주연 | AI Audio model | https://github.com/superjuyeon |
 | 양시영 | BE, Inference  | https://github.com/Lagom92     |
 | 이상훈 | UI/UX, FE      | https://github.com/Sanghun2    |

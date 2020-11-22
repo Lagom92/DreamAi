@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block body %}
+
+    <h1>Edit patient info page</h1>
+
+    {{patient.code}}
+    {{patient.name}}
+    {{patient.age}}
+    {{patient.sex}}
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        prescription <textarea name="prescription" id="" cols="30" rows="5">{{patient.prescription}}</textarea><br>
+        vitalSigns <textarea name="vitalSigns" id="" cols="30" rows="5">{{patient.vitalSigns}}</textarea><br>
+        history <textarea name="history" id="" cols="30" rows="5">{{patient.history}}</textarea><br>
+        <input type="submit" value="submit">
+    </form>
+
+{% endblock %}

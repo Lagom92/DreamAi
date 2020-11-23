@@ -1,2 +1,8 @@
 # Django secrte key
 Febreath/secret.json
+
+# AI model
+inferences/ml/
+
+# media
+media/

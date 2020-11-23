@@ -9,4 +9,10 @@
     {{patient.sex}}
     {{patient.prescription}}
 
+    <p>xrays</p>
+    {% for xray in xrays %}
+        {{xray.id}}
+        {{xray.created_at}}
+    {% endfor %}
+
 {% endblock %}

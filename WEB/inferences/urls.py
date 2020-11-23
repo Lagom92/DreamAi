@@ -8,7 +8,7 @@ urlpatterns = [
     path('patient/<int:pk>', views.detail, name='detail'),
     path('patient/<int:pk>/edit', views.editInfo, name='editInfo'),
 
-    path('infer/<int:pk>', views.infer, name='infer'),
+    path('infer/<int:pk>/<int:img_pk>', views.infer, name='infer'),
 
     path('examination/<int:pk>', views.examination, name='examination'),
 

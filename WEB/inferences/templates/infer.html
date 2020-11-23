@@ -11,5 +11,13 @@
 
     {% endfor %}
 
+    <h1>엑스레이 디테일 결과</h1>
+    {{xray}}
+    {{xray.patient}}
+    {{xray.photo}}
+    {{xray.photo.url}}
+    {{xray.created_at}}
+    {{xray.prediction}}
+    
 
 {% endblock %}

@@ -42,13 +42,15 @@ def editInfo(request, pk):
     return render(request, 'edit_info.html', {'patient':patient})
 
 
-'''inference 결과 리스트 페이지'''
+'''inference 결과 페이지'''
 @login_required
-def infer(request, pk):
+def infer(request, pk, img_pk):
     patient = get_object_or_404(Patient, id=pk)
     preds = patient.xray.all().order_by('-created_at')
 
-    return render(request, 'infer.html', {'preds':preds})
+    xray = get_object_or_404(Xray, id=img_pk)
+
+    return render(request, 'infer.html', {'preds':preds, 'xray':xray})
 
 
 '''inference 검사 페이지'''
@@ -68,4 +70,3 @@ def examination(request, pk):
     return render(request, 'examination.html')
 
 
-    

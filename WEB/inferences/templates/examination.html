@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block body %}
+
+    <h1>검사 페이지</h1>
+    <br>
+    <div class="container">
+        <form action="" enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            <h4>사진을 입력하세요! </h4>
+            <input type="file" name="image" accept="image/*" style="margin-left:32%">  
+            <br>
+            <input class="btn btn-dark" type="submit" value="Submit">
+        </form>
+    </div>
+
+{% endblock %}

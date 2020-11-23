@@ -21,9 +21,9 @@ class InferencesConfig(AppConfig):
     # cxr_model_name = ML_PATH + 'CXR_C2C_FP16_saved_model'
     audio_model_name = ML_PATH + "audio_model.h5"
 
-    # seg_model = tf.keras.models.load_model(seg_model_name,custom_objects={'dice_coef_loss': dice_coef_loss,'dice_coef':dice_coef})
-    # feature_model = tf.keras.models.load_model(feature_model_name)
-    # cxr_model = tf.keras.models.load_model(cxr_model_name)
+    seg_model = tf.keras.models.load_model(seg_model_name,custom_objects={'dice_coef_loss': dice_coef_loss,'dice_coef':dice_coef})
+    feature_model = tf.keras.models.load_model(feature_model_name)
+    cxr_model = tf.keras.models.load_model(cxr_model_name)
     # audio_model = tf.keras.models.load_model(audio_model_name)
 
     # multi_model = tf.keras.models.load_model(ML_PATH + "multi_model")

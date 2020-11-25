@@ -1,2 +1,5 @@
 # django secret key
 Febreath/secret.json
+
+# media
+media/

@@ -127,15 +127,15 @@ function createDownloadLink(blob) {
 	li.appendChild(au);
 	
 	//add the filename to the li
-	li.appendChild(document.createTextNode(filename+".wav "))
+	// li.appendChild(document.createTextNode(filename+".wav "))
 
 	//add the save to disk link to li
 	li.appendChild(link);
 	
 	//upload link
 	var upload = document.createElement('a');
-	upload.href="#";
-	upload.innerHTML = "Upload";
+	upload.href="http://localhost:8000/infer";
+	upload.innerHTML = "Inference";
 	upload.addEventListener("click", function(event){
 		  var xhr=new XMLHttpRequest();
 		  xhr.onload=function(e) {
@@ -145,7 +145,7 @@ function createDownloadLink(blob) {
 		  };
 		  var fd=new FormData();
 		  fd.append("audio_data",blob, filename);
-		  xhr.open("POST","upload.php",true);
+		  xhr.open("POST","http://localhost:8000/audio",false);
 		  xhr.send(fd);
 	})
 	li.appendChild(document.createTextNode (" "))//add a space in between

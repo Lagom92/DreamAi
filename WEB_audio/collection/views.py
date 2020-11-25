@@ -5,9 +5,10 @@ from .models import Cough
 from collection.apps import CollectionConfig
 from .predict import make_wav2img
 
-def main(request):
 
-    return render(request, 'main.html')
+def index(request):
+
+    return render(request, 'index.html')
 
 
 @csrf_exempt
@@ -18,7 +19,7 @@ def audio(request):
             title = str(request.FILES['audio_data'])
         )
     
-    return render(request, 'audio.html')
+    return render(request, 'index.html')
 
 
 def infer(request):
@@ -31,4 +32,3 @@ def infer(request):
     cough.save()
 
     return render(request, 'infer.html', {'prediction':prediction})
-

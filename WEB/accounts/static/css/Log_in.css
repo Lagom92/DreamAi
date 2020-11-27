@@ -1,0 +1,54 @@
+body{
+    background-color: #333d47;
+}
+
+.logo_and_log_in_con {
+    position: relative;
+    top: 1.5rem;
+}
+
+.logo {
+    position: relative;
+    left: 8.5rem;
+    top: 4rem;
+}
+
+.total_con {
+    width: 40rem;
+    height: 25rem;
+    position: absolute;
+    left: 29%;
+    top: 20%;
+    background-color: #EEEEEE;
+    border: 3px solid black;
+    border-color: black;
+    border-radius: 5px;
+}
+
+.log_in_con {
+    width: 400px;
+    height: 90px;
+    position: relative;
+    left: 28%;
+    top: 3rem;
+    
+}
+
+.Id_and_pw_con {
+    position: relative;
+    top: 20%;
+}
+
+.button_con {
+    position: relative;
+    left: 48%;
+    top: -50%
+}
+
+.button {
+    width: 80px;
+    height: 65px;
+    border-width: 2px;
+    border-color: black;
+}
+

@@ -4,8 +4,8 @@ from .models import Patient, Xray
 
 @admin.register(Patient)
 class PatientAdmin(admin.ModelAdmin):
-    list_display = ['id', 'code', 'name', 'age', 'sex', 'created_at']
-    list_display_links = ['id', 'code', 'name', 'age', 'sex', 'created_at']
+    list_display = ['id', 'code', 'name', 'sex', 'created_at']
+    list_display_links = ['id', 'code', 'name', 'sex', 'created_at']
 
 
 @admin.register(Xray)

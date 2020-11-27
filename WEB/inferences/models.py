@@ -9,11 +9,11 @@ class Patient(models.Model):
     doctor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='patient')
     code = models.CharField(max_length=50)
     name = models.CharField(max_length=50)
-    age = models.PositiveIntegerField(default=0,
-        validators=[
-            MaxValueValidator(150),
-            MinValueValidator(0)
-        ])
+    unit = models.CharField(max_length=50)
+    room = models.CharField(max_length=50)
+    
+    birth = models.DateField()
+    admission = models.DateField()
     sex_choices = (
         ('male', '남성'),
         ('female', '여성'),
@@ -22,7 +22,9 @@ class Patient(models.Model):
     prescription = models.TextField(blank=True)
     vitalSigns = models.TextField(blank=True)
     history = models.TextField(blank=True)
+    etc = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
 
     def __str__(self):
         return self.name

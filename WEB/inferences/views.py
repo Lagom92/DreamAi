@@ -65,8 +65,8 @@ def examination(request, pk):
         xray.prediction = InferencesConfig.predict_CXR(xray.photo.path)
         xray.save()
 
-        return redirect('inferences:infer', pk)
+        return redirect('inferences:infer', pk, xray.id)
 
-    return render(request, 'examination.html')
+    return render(request, 'examination.html', {'patient':patient})
 
 

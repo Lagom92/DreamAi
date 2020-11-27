@@ -17,17 +17,38 @@ margin-top: 20px;
 tr:nth-child(even){
     background-color: #EDF1F7;
 }
+tr:hover {
+    background-color: #d1d1d1;
+}
+
+tr:hover td {
+    background-color: transparent; /* or #000 */
+}
 
 th, td {
 border: 1px solid #444444;
 padding: 10px;
 }
 
+
+table { border-collapse:collapse; }  
+th, td { border:1px solid black; }
+[class^=count-] tr {
+  counter-increment: mycounter;
+}
+[class^=count-] tr>td:first-child:before {
+  content: counter(mycounter) " ";
+}
+.count-1 tr:nth-child(1) { counter-reset: mycounter; }
+.count-2 tr:nth-child(2) { counter-reset: mycounter; }
+}
+
 </style>
 
-<table>
+<body>
+<table class='count-2'>
     <tr>
-    	<td>No</td>
+    	<th></th>
         <td>병실변호</td>
     	<td>ID</td>
         <td>Name</td>
@@ -43,11 +64,24 @@ padding: 10px;
     {% for patient in patients %}
      <tr style = "cursor:pointer;" onClick = " window.open('{% url 'inferences:detail' patient.id%}')" 
      onMouseOver = " indow.status = '' " onMouseOut = " window.status = '' " target="_blank">
-         <td>num</td>
+         <td></td>
          <td>{{patient.room}}</td>
          <td>{{patient.code}}</td>
          <td>{{patient.name}}</td>
-         <td>{{patient.birth | date:'Y'}}, {% now "Y" %}</td>
+         <td>
+            <script>
+                const today = new Date();
+                const birthDate = {{patient.birth | date:'Y'}};
+    
+                let age = today.getFullYear() - birthDate.getFullYear();
+                const m = today.getMonth() - birthDate.getMonth();
+                if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+    
+                document.writeln(age);
+                </script>
+                <!-- {{patient.birth | date:'Y'}} -->
          <td>{{patient.sex}}</td>
          <td>{{patient.unit}}</td>
          <td>{{patient.doctor}}</td>
@@ -56,7 +90,10 @@ padding: 10px;
         <td>{{patient.etc}}</td>
     </tr>
     {% endfor %}
+    
 
 </table>
+
+</body>
     
 {% endblock %}

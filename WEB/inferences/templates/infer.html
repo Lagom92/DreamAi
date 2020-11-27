@@ -1,23 +1,102 @@
-{% extends 'base.html' %}
+
 {% block body %}
 
-    <h1>infer list</h1>
-    {% for pred in preds %}
-        <img src="{{pred.photo.url}}" alt=""> <br>
-        의사: {{pred.patient.doctor}} <br>
-        환자 이름: {{pred.patient.name}} <br>
-        이미지 입력 날짜: {{pred.created_at}} <br>
-        진단 결과: {{pred.prediction}} <br>
+<style>
+body{
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background:black;
+    }
+    
 
-    {% endfor %}
+/* 왼쪽 sidebar */
 
-    <h1>엑스레이 디테일 결과</h1>
-    {{xray}}
-    {{xray.patient}}
-    {{xray.photo}}
-    {{xray.photo.url}}
-    {{xray.created_at}}
-    {{xray.prediction}}
+.wrapper .sidebar{
+padding-top: 30px;
+background: #2b323a;
+position: fixed;
+width: 310px;
+height: calc(100%);
+z-index: 2;
+transition:0.3s;
+transition-property: width;
+overflow-y: auto;
+}
+
+.sidebar ol a{
+    display: block;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(255,255,255,.1);
+    border-bottom: 1px solid black;
+    transition: .4s;
+}
+
+ol li:hover a{
+    padding-left: 10px;
+
+}
+
+/* 오른쪽 sidebar */
+.wrapper_r .sidebar_r{
+    padding-top: 30px;
+    background: #2b323a;
+    position: fixed;
+    width: 310px;
+    height: calc(100%);
+    transition:0.3s;
+    transition-property: width;
+    overflow-y: auto;
+    right: 0;
+}
+</style>
+
+
+<body>
+    <!-- 왼쪽 sidebar -->
+    <div class='wrapper'>
+        <div class='sidebar'>
+            <div style="font-size: 20px; color:white;">
+            <center>결과목록</center>
+            <br>
+            </div>
+            <ol>
+                {% for pred in preds %}
+                <li style="color: white;">
+                    <a href="" style="color:white; text-decoration: none; font-size: 15px;">
+                    <!-- <img src="{{pred.photo.url}}" alt=""> <br> -->
+                    {{pred.created_at| date:'Y.m.d'}}&nbsp&nbsp{{pred.created_at| date:'Y.m.d'}}&nbsp&nbsp{{pred.prediction}} <br>
+                    </a>
+                </li><hr>
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+
+    <!-- 중앙사진 -->
+    <div>
+        <img src="{{pred.photo.url}}" alt="">
+    </div>
+
+    <!-- 오른쪽 sidebar -->
+    <div class='wrapper_r'>
+        <div class='sidebar_r'>
+            <div style="font-size: 20px; color:white;">
+            <center>{{xray.patient}}</center>
+                <center>{{xray.patient.code}}&nbsp&nbsp{{xray.patient.age}}&nbsp&nbsp{{xray.patient.sex}}</center>
+            <br>
+            </div>
+            <div style="color:white;">
+            결과&nbsp:&nbsp{{xray.prediction}} <br>
+            결과 일시&nbsp:&nbsp{{xray.created_at| date:'Y.m.d'}}<br>
+            사진이름&nbsp:&nbsp{{xray.photo}}<br>
+            
+            
+            </div>
+        </div>
+    </div>
+
+</body>
+
     
 
 {% endblock %}

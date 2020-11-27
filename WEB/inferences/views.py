@@ -1,8 +1,8 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .models import Patient, Xray
+from .models import Multi, Patient, Xray
 from inferences.apps import InferencesConfig
-
+from inferences.predict import make_wav2img
 
 '''환자 목록 페이지'''
 @login_required
@@ -70,3 +70,20 @@ def examination(request, pk):
     return render(request, 'examination.html', {'patient':patient})
 
 
+'''multi inference 검사 페이지'''
+def multiExamination(request, pk):
+    patient = get_object_or_404(Patient, id=pk)
+    if request.method == 'POST':
+        multi = Multi.objects.create(
+            patient = patient,
+            photo = request.FILES['image'],
+            audio = request.FILES['audio']
+        )
+        audio_mel_path = make_wav2img(multi.audio.path)
+        prediction = InferencesConfig.predict_multi(multi.photo.path, audio_mel_path)
+        multi.mel = audio_mel_path[8:]
+        multi.prediction = prediction
+        multi.save()
+
+
+    return render(request, 'multiExamination.html', {'patient':patient})

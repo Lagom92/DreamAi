@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+from multi import apps
 import tensorflow as tf
 import numpy as np 
 import librosa.display
@@ -106,3 +107,22 @@ def audio_preprocessing(mel_path, img_size):
     img = np.expand_dims(img, axis=0)
 
     return img
+
+
+def predict_multiInput(image_path, audio_mel_path):
+    img_size = (224, 224)
+    label = ('negative','positive')
+    
+    cropped_image = get_cropped_image(image_path, apps.seg_model)
+    cxr_img = image_preprocessing(cropped_image, img_size)
+    
+    audio_img = audio_preprocessing(audio_mel_path, img_size)
+    
+    image_feature_vector = apps.feature_model.predict(cxr_img)
+    audio_feature_vector = apps.feature_model.predict(audio_img)
+
+    prediction = apps.multi_model.predict([image_feature_vector, audio_feature_vector])[0]
+
+    predict = int(np.round(prediction))
+
+    return label[predict]

@@ -8,7 +8,6 @@ import os
 import matplotlib.cm as cm
 
 
-
 def dice_coef(y_true, y_pred):
     y_true_f = tf.keras.flatten(y_true)
     y_pred_f = tf.keras.flatten(y_pred)
@@ -73,25 +72,20 @@ def show_CAM(cropped_image, heatmap, prediction, boundary, threshold=180):
     idx = np.where(jet_heatmap.mean(axis=2) > threshold)
     jet_heatmap[idx] = np.array([255,255,255])
 
-    superimposed_img = jet_heatmap
-
-    if prediction =='negative':
-        superimposed_img[:,:] = [255,255,255]
-
-    superimposed_img = tf.keras.preprocessing.image.array_to_img(superimposed_img)
+    jet_heatmap = tf.keras.preprocessing.image.array_to_img(jet_heatmap)
     
-    return superimposed_img
+    return jet_heatmap
 
 # 여러개의 heatmap 이미지를 얻는다.
-def make_multi_heatmaps(cropped_image, original, original_512, heatmap, prediction, boundary, iterator=10):
+def make_multi_heatmaps(title, cropped_image, original, original_512, heatmap, prediction, boundary, iterator=10):
     cam_list = []
     interval = 150 // iterator
-    for threshold in range(50, 201, interval):
+    for threshold in range(50, 186, interval):
         cam_image = show_CAM(cropped_image , heatmap, prediction, boundary, threshold)
         original_size_heatmap = get_original_size_heatmap(cam_image, original, original_512, boundary)
-        
-        get_transparent_img(original_size_heatmap, f"media/heat/pngCXR_{threshold}.png")
-        cam_list.append(original_size_heatmap)
+        heat_path = f"./media/heat/{title}/{title}_{str(threshold)}.png"
+        get_transparent_img(original_size_heatmap, heat_path, title)
+        cam_list.append(heat_path)
 
     return cam_list
 
@@ -110,7 +104,7 @@ def predict_CXR(cropped_image , model, feature_model,img_size):
     return label, prediction
 
 
-def get_transparent_img(original_size_heatmap, image_name):
+def get_transparent_img(original_size_heatmap, image_name, title):
     img = original_size_heatmap.convert("RGBA")
     datas = img.getdata()
 
@@ -126,6 +120,8 @@ def get_transparent_img(original_size_heatmap, image_name):
     img.putdata(newData)
     if not os.path.isdir('./media/heat'):
         os.mkdir('./media/heat')
+    if not os.path.isdir(f'./media/heat/{title}'):
+        os.mkdir(f'./media/heat/{title}')
     img.save(image_name, "PNG") 
 
 
@@ -194,5 +190,3 @@ def get_original_size_heatmap(cam_image, original, original_512, boundary):
     original_size_heatmap = original_size_heatmap.resize((original.shape[1], original.shape[0]))
     
     return original_size_heatmap
-
-

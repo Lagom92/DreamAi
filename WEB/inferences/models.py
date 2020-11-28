@@ -42,7 +42,6 @@ class Xray(models.Model):
         super(Xray, self).delete(*args, **kwargs) 
 
 
-
 class Heat(models.Model):
     xray = models.ForeignKey(Xray, on_delete=models.CASCADE, related_name='heat')
     photo = models.ImageField(blank=True, null=True, upload_to="heat/%Y%m%d")

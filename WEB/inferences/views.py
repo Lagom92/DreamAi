@@ -1,3 +1,4 @@
+from inferences import predict
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Patient, Xray, Heat
@@ -49,9 +50,12 @@ def infer(request, pk, img_pk):
     preds = patient.xray.all().order_by('-created_at')
 
     xray = get_object_or_404(Xray, id=img_pk)
-    heat = get_object_or_404(Heat, xray=xray)
+    if xray.prediction == 'positive':
+        heats = Heat.objects.filter(xray=xray)
+        return render(request, 'infer.html', {'preds':preds, 'xray':xray, 'heats':heats})
 
-    return render(request, 'infer.html', {'preds':preds, 'xray':xray, 'heat':heat})
+    else:
+        return render(request, 'infer.html', {'preds':preds, 'xray':xray})
 
 
 '''inference 검사 페이지'''
@@ -63,11 +67,14 @@ def examination(request, pk):
             patient = patient,
             photo = request.FILES['image'],
         )
-        xray.prediction, nums, heat_path = InferencesConfig.prediction_and_heatmap(xray.photo.path, cxr_model, seg_model, feature_model)
-        heat = Heat.objects.create(
-            xray = xray,
-            photo = heat_path[8:]
-        )
+        prediction, nums, cam_list = InferencesConfig.prediction_and_heatmap(xray.photo.path, cxr_model, seg_model, feature_model)
+        if prediction == 'positive':
+            for cam in cam_list:
+                heat = Heat.objects.create(
+                    xray = xray,
+                    photo = cam[8:]
+                )
+        xray.prediction = prediction
         xray.save()
 
         return redirect('inferences:infer', pk, xray.id)

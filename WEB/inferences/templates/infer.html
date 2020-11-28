@@ -48,6 +48,44 @@ ol li:hover a{
     overflow-y: auto;
     right: 0;
 }
+
+.name_heatmap {
+    color: white;
+    position: absolute;
+    left: 1rem;
+}
+
+.heatmap_con {
+    position: absolute;
+    left: 0rem;
+    top: 20rem;
+}
+
+.heatmap_rigid_controller {
+    position: absolute;
+    left: 3rem;
+    top: 3rem;
+}
+
+.controll_bar {
+    position: absolute;
+    left: 1rem;
+    top: 0.2rem;
+}
+
+.rigid_controller_color {
+    color: white;
+    position: absolute;
+    left: -1.5rem;
+
+}
+
+#rigid_value {
+    position: absolute;
+    left: 10rem;
+    top: 0.2rem;
+}
+
 </style>
 
 
@@ -85,12 +123,22 @@ ol li:hover a{
                 <center>{{xray.patient.code}}&nbsp&nbsp{{xray.patient.age}}&nbsp&nbsp{{xray.patient.sex}}</center>
             <br>
             </div>
-            <div style="color:white;">
+            <div style="color:white; position: absolute; left: 1rem; right: 1rem;">
             결과&nbsp:&nbsp{{xray.prediction}} <br>
             결과 일시&nbsp:&nbsp{{xray.created_at| date:'Y.m.d'}}<br>
-            사진이름&nbsp:&nbsp{{xray.photo}}<br>
-            
-            
+            사진이름&nbsp:&nbsp{{xray.photo}}<br>           
+            </div>
+            <div class="heatmap_con">
+                <div class="name_heatmap">Heat&nbspMap</span>
+                <div class="heatmap_rigid_controller">
+                    <form action="">
+                        <!-- <label class="rigid_controller_color" for="heatmap_rigid_controll">Rigid</label>
+                                            <input type="range" class="custom-range" min="1" max="10" step="1" value="5" name="heatmap_rigid_controll"> -->
+                        <label class="rigid_controller_color" for="heatmap_rigid_number">Rigid</label>
+                        <input class="controll_bar" type="range" name="heatmap_rigid_number" min="1" max="10" value="5" step="1" oninput="document.getElementById('rigid_value').innerHTML=this.value;" />
+                        <span id="rigid_value">5</span>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

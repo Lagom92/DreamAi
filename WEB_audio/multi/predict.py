@@ -122,7 +122,6 @@ def predict_multiInput(image_path, audio_mel_path):
     audio_feature_vector = apps.feature_model.predict(audio_img)
 
     prediction = apps.multi_model.predict([image_feature_vector, audio_feature_vector])[0]
+    index = prediction.argmax()
 
-    predict = int(np.round(prediction))
-
-    return label[predict]
+    return label[index], prediction

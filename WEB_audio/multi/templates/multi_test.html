@@ -81,6 +81,17 @@
             </button>
         </div>
         <div class="modal-body">
+          <div>
+            <form action="" enctype="multipart/form-data" method="POST">
+              {% csrf_token %}
+              <h4>입력하세요! </h4>
+              audio: <input type="file" name="audio" accept="audio/*">  
+              <br>
+              cxr: <input type="file" name="photo" accept="image/*">  
+              <br>
+              <input class="btn btn-dark" type="submit" value="Submit" onclick="loading();">
+          </form>
+          </div>
 
             <!-- <div id="controls">
             <button id="recordButton">Record</button>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Multi Result</h1>
+
+    <p>{{multi}}</p>
+    <p>{{multi.prediction}}</p>
+    <p>negative: {{multi.neg_rate}}</p>
+    <p>positive: {{multi.pos_rate}}</p>
+    <div class="row">
+        <img src="{{multi.photo.url}}" alt="">
+        <img src="{{multi.mel.url}}" alt="">
+    </div>
+</body>
+</html>

@@ -6,3 +6,6 @@ media/
 
 # model
 collection/ml/
+
+# not h5
+!*.h5

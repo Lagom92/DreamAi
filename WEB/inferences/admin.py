@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Patient, Xray, Multi
+from .models import Patient, Xray, Multi, Heat
 
 
 @admin.register(Patient)
@@ -19,3 +19,8 @@ class MultiAdmin(admin.ModelAdmin):
     list_display = ['id', 'patient', 'prediction', 'created_at']
     list_display_links = ['id', 'patient', 'prediction', 'created_at']
 
+
+@admin.register(Heat)
+class HeatAdmin(admin.ModelAdmin):
+    list_display = ['id', 'created_at']
+    list_display_links = ['id', 'created_at']

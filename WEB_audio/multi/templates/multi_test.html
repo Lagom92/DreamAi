@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-  <title>Febreath - Codet for Audio</title>
+  <title>Febreath - Codet for Multi</title>
   <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
   <!-- Font Awesome icons (free version)-->
   <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
@@ -33,7 +33,7 @@
         <ul class="navbar-nav ml-auto">
           <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
           <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#projects">Projects</a></li>
-          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#signup">Contact</a></li>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
         </ul>
       </div>
     </div>
@@ -42,8 +42,8 @@
   <header class="masthead">
     <div class="container d-flex h-100 align-items-center">
       <div class="mx-auto text-center">
-        <h1 class="mx-auto my-0 text-uppercase">Co - Det: <strong>A</strong></h1>
-        <h2 class="text-white-50 mx-auto mt-2 mb-5">기침 소리로 코로나19를 진단할 수 있는 AI 모델 개발 진행중에 있습니다</h2>
+        <h1 class="mx-auto my-0 text-uppercase">Co - Det: <strong>M</strong></h1>
+        <h2 class="text-white-50 mx-auto mt-2 mb-5">기침 소리와 Chest X-ray로 코로나19를 진단할 수 있는 AI 모델 개발 진행중에 있습니다</h2>
         <a class="btn btn-primary js-scroll-trigger" href="#about">Get Started</a>
       </div>
     </div>
@@ -66,42 +66,42 @@
     <!-- ////////////////////////////////////////////////////////////////// -->
     <div id="myModal">
       <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
-      Inference Audio
+    <button type="button" class="btn btn-primary mb-4" data-toggle="modal" data-target="#staticBackdrop">
+      <h5>검사하기</h5>
     </button>
 
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Audio와 Chest X-ray를 입력해주세요.</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
 
-        <div id="controls">
-          <button id="recordButton">Record</button>
-          <button id="pauseButton" disabled>Pause</button>
-          <button id="stopButton" disabled>Stop</button>
-      </div>
-      
-      <p><strong>Recordings:</strong></p>
-      
-      <ol id="recordingsList"></ol>
+            <!-- <div id="controls">
+            <button id="recordButton">Record</button>
+            <button id="pauseButton" disabled>Pause</button>
+            <button id="stopButton" disabled>Stop</button>
+            </div>
+        
+            <p><strong>Recordings:</strong></p>
+        
+            <ol id="recordingsList"></ol> -->
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <!-- <button type="button" class="btn btn-primary">Understood</button> -->
-      </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <!-- <button type="button" class="btn btn-primary">Understood</button> -->
+        </div>
+        </div>
     </div>
-  </div>
-</div>
-<!-- ////////////////////////////////////////////////////////////////// -->
     </div>
+    </div>
+    <!-- ////////////////////////////////////////////////////////////////// -->
   </section>
   <!-- Projects-->
   <section class="projects-section bg-light" id="projects">
@@ -156,7 +156,7 @@
     </div>
   </section>
   <!-- Signup-->
-  <section class="signup-section" id="signup">
+  <!-- <section class="signup-section" id="signup">
     <div class="container">
       <div class="row">
         <div class="col-md-10 col-lg-8 mx-auto text-center">
@@ -170,9 +170,9 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
   <!-- Contact-->
-  <section class="contact-section bg-black">
+  <section class="contact-section bg-black" id="contact">
     <div class="container">
       <div class="row">
         <div class="col-md-4 mb-3 mb-md-0">

@@ -6,7 +6,6 @@ import numpy as np
 import os
 
 
-# make mel-spectrogram image file
 def make_wav2img(audio_path):
     y, sr = librosa.load(audio_path, sr = None)
     S = librosa.feature.melspectrogram(y, sr=22050, n_mels=128) 

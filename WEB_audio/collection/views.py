@@ -27,9 +27,9 @@ def infer(request):
     cough = Cough.objects.last()
     audio_path = cough.audio.path
     image_path = make_wav2img(audio_path)
-    prediction = CollectionConfig.predict_audio(image_path)
+    pred, nums = CollectionConfig.predict_audio(image_path)
     cough.mel = image_path[8:]
-    cough.prediction = prediction
+    cough.prediction = pred
     cough.save()
 
-    return render(request, 'infer.html', {'prediction':prediction})
+    return render(request, 'infer.html', {'prediction':pred, 'nums':nums})

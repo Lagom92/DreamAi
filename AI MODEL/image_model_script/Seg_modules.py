@@ -43,7 +43,7 @@ def get_boundingbox(pred_label):
             right = i
             break
     # To avid cropping too many pixels, make the bounding box loosely.
-    return top//3, 512-(512-bottom)//3, left//3, 512-(512-right)//3
+    return top//2, 512-(512-bottom)//2, left//2, 512-(512-right)//2
 
 def dice_coef(y_true, y_pred):
     y_true_f = keras.flatten(y_true)
@@ -53,7 +53,6 @@ def dice_coef(y_true, y_pred):
 
 def dice_coef_loss(y_true, y_pred):
     return 1-dice_coef(y_true, y_pred)
-
 
 # Detect an CXR's lung location and crop it.
 def get_cropped_image(image_path, model_seg):

@@ -24,7 +24,6 @@ class Patient(models.Model):
     etc = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
-
     def __str__(self):
         return self.name
 
@@ -32,7 +31,6 @@ class Patient(models.Model):
 class Xray(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name='xray')
     photo = models.ImageField(blank=True, null=True, upload_to="img/%Y%m%d")
-    # 추가 예정
     created_at = models.DateTimeField(auto_now_add=True)
     prediction = models.CharField(max_length=100, null=True, blank=True)
     
@@ -44,11 +42,10 @@ class Xray(models.Model):
 
 class Heat(models.Model):
     xray = models.ForeignKey(Xray, on_delete=models.CASCADE, related_name='heat')
-    photo = models.ImageField(blank=True, null=True, upload_to="heat/%Y%m%d")
+    photo = models.ImageField(blank=True, null=True, upload_to="heat")
     created_at = models.DateTimeField(auto_now_add=True)
 
     # delete 오버라이딩
     def delete(self, *args, **kwargs):
         os.remove(os.path.join(settings.MEDIA_ROOT, self.photo.path))
         super(Heat, self).delete(*args, **kwargs) 
-

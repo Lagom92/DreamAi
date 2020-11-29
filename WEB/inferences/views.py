@@ -1,7 +1,8 @@
 from inferences import predict
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .models import Patient, Xray, Heat
+from .models import Patient, Xray, Heat, Multi
+from inferences.predict import make_wav2img
 from inferences.apps import *
 
 
@@ -80,5 +81,3 @@ def examination(request, pk):
         return redirect('inferences:infer', pk, xray.id)
 
     return render(request, 'examination.html', {'patient':patient})
-
-

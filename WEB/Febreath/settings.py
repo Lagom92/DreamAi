@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'inferences.apps.InferencesConfig',
     'accounts.apps.AccountsConfig',
+    'multi.apps.MultiConfig',
 ]
 
 MIDDLEWARE = [

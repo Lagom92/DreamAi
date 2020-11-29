@@ -1,8 +1,6 @@
-from inferences import predict
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .models import Patient, Xray, Heat, Multi
-from inferences.predict import make_wav2img
+from .models import Patient, Xray, Heat
 from inferences.apps import *
 
 

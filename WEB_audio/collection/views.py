@@ -1,10 +1,8 @@
-import collection
 from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_exempt
-from .models import Cough
 from collection.apps import CollectionConfig
 from .predict import make_wav2img
-
+from .models import Cough
 
 def index(request):
 
@@ -14,10 +12,13 @@ def index(request):
 @csrf_exempt
 def audio(request):
     if request.method == 'POST':
-        Cough.objects.create(
-            audio = request.FILES['audio_data'],
-            title = str(request.FILES['audio_data'])
-        )
+        try:
+            Cough.objects.create(
+                audio = request.FILES['audio_data'],
+                title = str(request.FILES['audio_data'])
+            )
+        except:
+            print("Error in Cough create")
     
     return render(request, 'index.html')
 

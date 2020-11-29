@@ -12,7 +12,7 @@ class CollectionConfig(AppConfig):
 
     # Load model
     global feature_model, audio_model
-    ML_PATH = "./ml/"
+    ML_PATH = "collection/ml/"
 
     feature_model_name = ML_PATH + 'feature_model.h5'
     audio_model_name = ML_PATH + "audio_model.h5"

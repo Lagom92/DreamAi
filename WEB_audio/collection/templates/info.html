@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <H1>Data form</H1>
+    
+    <div>
+        <form action="{% url 'info' %}" method="POST">
+            {% csrf_token %}
+            <label for="age">age:</label>
+            <input type="text" id="age" name="age" required>
+            <br><br>
+
+            <label for="region">region:</label>
+            <input type="text" id="region" name="region" required>
+            <br><br>
+
+            <label for="sex">sex:</label>
+            <select name="sex" id="sex" required>
+                <option value="male">남성</option>
+                <option value="female">여성</option>
+                <option value="etc">기타</option>
+            </select>
+            <br><br>
+
+            <label for="state">state:</label>
+            <select name="state" id="state" required>
+                <option value="none">코로나에 걸린적이 전혀 없다</option>
+                <option value="neg">코로나에 걸린적이 있지만 현재는 다 나았다</option>
+                <option value="pos">현재 코로나에 걸렸다</option>
+            </select>
+            <br><br>
+
+            <input class="btn" type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>

@@ -81,21 +81,3 @@ def examination(request, pk):
         return redirect('inferences:infer', pk, xray.id)
 
     return render(request, 'examination.html', {'patient':patient})
-
-
-'''multi inference 검사 페이지'''
-def multiExamination(request, pk):
-    patient = get_object_or_404(Patient, id=pk)
-    if request.method == 'POST':
-        multi = Multi.objects.create(
-            patient = patient,
-            photo = request.FILES['image'],
-            audio = request.FILES['audio']
-        )
-        audio_mel_path = make_wav2img(multi.audio.path)
-        prediction = InferencesConfig.predict_multi(multi.photo.path, audio_mel_path)
-        multi.mel = audio_mel_path[8:]
-        multi.prediction = prediction
-        multi.save()
-
-    return render(request, 'multiExamination.html', {'patient':patient})

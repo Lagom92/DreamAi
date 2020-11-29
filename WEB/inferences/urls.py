@@ -11,8 +11,4 @@ urlpatterns = [
     path('examination/<int:pk>', views.examination, name='examination'),
     path('infer/<int:pk>/<int:img_pk>', views.infer, name='infer'),
 
-    path('multi/examination/<int:pk>', views.multiExamination, name="multiExamination"),
-
-
-
 ]

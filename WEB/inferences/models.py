@@ -40,28 +40,12 @@ class Xray(models.Model):
         super(Xray, self).delete(*args, **kwargs) 
 
 
-class Multi(models.Model):
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name='multi')
-    photo = models.ImageField(blank=True, null=True, upload_to="img/%Y%m%d")
-    audio = models.FileField(blank=True, null=True, upload_to="audio/%Y%m%d")
-    mel = models.ImageField(blank=True, null=True, upload_to="mel/%Y%m%d")
-    prediction = models.CharField(max_length=100, null=True, blank=True)
-
-    # delete 오버라이딩
-    def delete(self, *args, **kwargs):
-        os.remove(os.path.join(settings.MEDIA_ROOT, self.photo.path))
-        os.remove(os.path.join(settings.MEDIA_ROOT, self.audio.path))
-        os.remove(os.path.join(settings.MEDIA_ROOT, self.mel.path))
-        super(Multi, self).delete(*args, **kwargs) 
-
-
 class Heat(models.Model):
     xray = models.ForeignKey(Xray, on_delete=models.CASCADE, related_name='heat')
-    photo = models.ImageField(blank=True, null=True, upload_to="heat/%Y%m%d")
+    photo = models.ImageField(blank=True, null=True, upload_to="heat")
     created_at = models.DateTimeField(auto_now_add=True)
 
     # delete 오버라이딩
     def delete(self, *args, **kwargs):
         os.remove(os.path.join(settings.MEDIA_ROOT, self.photo.path))
         super(Heat, self).delete(*args, **kwargs) 
-

@@ -68,25 +68,12 @@ th, td { border:1px solid black; }
          <td>{{patient.room}}</td>
          <td>{{patient.code}}</td>
          <td>{{patient.name}}</td>
-         <td>
-            <script>
-                const today = new Date();
-                const birthDate = {{patient.birth | date:'Y'}};
-    
-                let age = today.getFullYear() - birthDate.getFullYear();
-                const m = today.getMonth() - birthDate.getMonth();
-                if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-                    age--;
-                }
-    
-                document.writeln(age);
-                </script>
-                <!-- {{patient.birth | date:'Y'}} -->
          <td>{{patient.sex}}</td>
          <td>{{patient.unit}}</td>
          <td>{{patient.doctor}}</td>
          <td>{{patient.admission | date:'Y.m.d'}}</td>
          <td>{{patient.admission | date:'Y.m.d'}}, {% now "Y-m-d" %}</td>
+        <td>{{patient.etc}}</td>
         <td>{{patient.etc}}</td>
     </tr>
     {% endfor %}

@@ -42,7 +42,7 @@
   <header class="masthead">
     <div class="container d-flex h-100 align-items-center">
       <div class="mx-auto text-center">
-        <h1 class="mx-auto my-0 text-uppercase">Co - Det</h1>
+        <h1 class="mx-auto my-0 text-uppercase">Co - Det: <strong>A</strong></h1>
         <h2 class="text-white-50 mx-auto mt-2 mb-5">기침 소리로 코로나19를 진단할 수 있는 AI 모델 개발 진행중에 있습니다</h2>
         <a class="btn btn-primary js-scroll-trigger" href="#about">Get Started</a>
       </div>
@@ -69,6 +69,8 @@
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
       Inference Audio
     </button>
+
+    <a href="{% url 'info' %}"><button>Meta data</button></a>
 
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

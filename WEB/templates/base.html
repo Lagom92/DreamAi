@@ -19,6 +19,7 @@ header{
     right: 0;
     z-index: 1;
 }
+<<<<<<< HEAD
 .left_area{
     padding:15px 30px;
 }
@@ -33,12 +34,42 @@ header{
     border:0;
     border-bottom: 2px solid black;
     
+=======
+.left_area_CODET {    
+    color: #fff;
+    text-decoration: none;
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 22px;
+    font-weight: 900;
+}
+
+
+.left_area_X {
+    /* columns: #fff; */
+    color: #253548;
+    font-size: 28px;
+    position: absolute;
+    top: 1.2rem;
+    left: 5.8rem;
+
+}
+
+.right_area {
+    position: absolute;
+    top: 0rem;
+    left: 40rem;
+>>>>>>> fe3bb231992895c3ff6039da61b2b29849cf8c68
 }
 
 .search_btn{
     padding:5px;
     background: #253548;
+<<<<<<< HEAD
     margin-top: -43px;
+=======
+    margin-top: -30px;
+>>>>>>> fe3bb231992895c3ff6039da61b2b29849cf8c68
     margin-right: 40px;
     border-radius: 2px;
     font-size:15px;
@@ -47,13 +78,22 @@ header{
     transition: 0.5s;
     transition-property: background;
     float: right;
+    position: absolute;
+    left: 52rem;
+    top: 2.8rem;
 }
 
 .search_btn:hover{
     background: #29558E;
     text-decoration: none;
 }
-    
+
+.text {
+    position: absolute;
+    left: 40rem;
+    top: 1rem;
+}
+
 </style>
 
 <html lang="ko" dir='Itr'>
@@ -69,12 +109,22 @@ header{
     <div>
         <header>
             <div class='left_area'>
+<<<<<<< HEAD
                 <a href="{% url 'inferences:main' %}"> <img style='width: 179px; height: 27px;' src="https://postfiles.pstatic.net/MjAyMDExMjlfMTk3/MDAxNjA2NjMyMTYwNjQx.pW-kVFk0C6g832N2W-rG49Eyp1uZ4-rfO_RP7QyywJUg.M_SxN7uLkiQs7WE7yZzRyx_QTMocqAkw7kebWDMn1aog.PNG.smilekjy1001/codet___logo_4_(1).png?type=w773" alt=""></a>
             </div>
             <div class='right_area'>
                 <input type="text" style="color:black;" class='form' placeholder="환자 검색">
                 <a href="#" class='search_btn'>search</a>
+=======
+                <h3 ><a class="left_area_CODET" href="{% url 'inferences:main' %}"> CODET <span class="left_area_X">X</span></a></h3>
             </div>
+            <div class='right_area'>
+                <input class="text" type="text"/>
+                <a href="#" class='search_btn'>search</a>                
+>>>>>>> fe3bb231992895c3ff6039da61b2b29849cf8c68
+            </div>
+            
+            
         </header> 
     </div>
     {% block body %}

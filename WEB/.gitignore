@@ -2,7 +2,10 @@
 Febreath/secret.json
 
 # AI model
-inferences/ml/
+# inferences/ml/
 
 # media
 media/
+
+# not h5
+!*.h5

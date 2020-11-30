@@ -4,5 +4,5 @@ Febreath/secret.json
 # media
 media/
 
-# model
-collection/ml/
+# not h5
+!*.h5

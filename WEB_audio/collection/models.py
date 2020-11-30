@@ -19,3 +19,22 @@ class Cough(models.Model):
     def __str__(self):
         return self.title
         
+
+class Info(models.Model):
+    age = models.CharField(max_length=20)
+    sex_choices = (
+        ('male', '남성'),
+        ('female', '여성'),
+        ('etc', '기타')
+    )
+    sex = models.CharField(max_length=50, choices=sex_choices)
+    region = models.CharField(max_length=100)
+    state_choices = (
+        ('pos', '양성'),
+        ('neg', '음성'),
+        ('none', '알수없음'),
+    )
+    state = models.CharField(max_length=50, choices=state_choices)
+
+    def __str__(self):
+        return self.sex

@@ -1,6 +1,67 @@
 
 {% block body %}
 
+<script>
+    // function chage_url(image_url){
+    //     console.log(image_url);
+    //     return image_url
+    // }
+
+    function change_heatmap(num_rigid) {
+       if (num_rigid == 1){
+           var image = '{{heats.0.photo.url}}';
+        //    console.log('s6');
+           return image
+       }
+       else if(num_rigid==2){
+           var image = '{{heats.1.photo.url}}';
+        //    console.log('s7');
+           return image
+       }
+       else if(num_rigid==3){
+           var image = '{{heats.2.photo.url}}';
+        //    console.log('s7');
+           return image
+       }
+       else if(num_rigid==4){
+           var image = '{{heats.3.photo.url}}';
+        //    console.log('s7');
+           return image
+       }
+       else if(num_rigid==5){
+           var image = '{{heats.4.photo.url}}';
+        //    console.log('s7');
+           return image
+       }
+       else if(num_rigid==6){
+           var image = '{{heats.5.photo.url}}';
+        //    console.log('s7');
+           return image
+       }
+       else if(num_rigid==7){
+           var image = '{{heats.6.photo.url}}';
+        //    console.log('s7');
+           return image
+       }
+       else if(num_rigid==8){
+           var image = '{{heats.7.photo.url}}';
+        //    console.log('s7');
+           return image
+       }
+       else if(num_rigid==9){
+           var image = '{{heats.8.photo.url}}';
+        //    console.log('s7');
+           return image
+       }
+       else if(num_rigid==10){
+           var image = '{{heats.9.photo.url}}';
+        //    console.log('s7');
+           return image
+       }
+    }
+
+
+</script>
 <style>
 body{
     margin: 0;
@@ -37,9 +98,11 @@ ol li:hover a{
 }
 
 .center_image {
-    position: relative;
-    top: -3rem;
+    position: fixed;
+    top:50%; left:50%;
+    transform: translate(-50%, -50%);
 }
+
 
 /* 오른쪽 sidebar */
 .wrapper_r .sidebar_r{
@@ -48,17 +111,16 @@ ol li:hover a{
     position: absolute;
     top: -2rem;
     width: 310px;
-    height: calc(110%);
+    height: calc(110.9%);
     transition:0.3s;
     transition-property: width;
     overflow-y: auto;
     right: 0;
 }
 
-progress[value] {
-    background-color: "orange";
-    border: black;
-    border-radius: 10px;
+progress[value]::-webkit-progress-value {
+    background-image: -webkit-gradient(rgba(1,1,1,0.5));
+    border-radius: 2px;
 }
 
 .info {
@@ -241,12 +303,12 @@ progress[value] {
     </div>
 
     <!-- 중앙사진 -->
-    <center>
-        <div class="center_image">
-            <img src="{{xray.photo.url}}" alt="">
-            <img src="../static/img/heatmap_1.png" alt="1">
-        </div>
-    </center>
+    
+    <div>
+        <img class="center_image" src="{{xray.photo.url}}" alt="">
+        <img id="heatmap_image" class="center_image" src="{{heats.4.photo.url}}" style="opacity: 50%;" alt="">
+    </div>
+    
 
    
 
@@ -263,7 +325,7 @@ progress[value] {
             <div class="info_detail" style="color:white; position: absolute; left: 1rem; right: 1rem;">
             결과&nbsp:&nbsp{{xray.prediction}} <br>
             결과 일시&nbsp:&nbsp{{xray.created_at| date:'Y.m.d'}}<br>
-<<<<<<< HEAD
+
             사진이름&nbsp:&nbsp{{xray.photo}}<br>           
             </div>
             <div class="prediction_container">
@@ -273,6 +335,12 @@ progress[value] {
 
                         <!-- COVID -->
                         <div class="prediction_content_container_COVID">
+
+                            <!-- <div class="progress">
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="50" aria-valuemin="0"
+                                    aria-valuemax="100"></div>
+                            </div> -->
+
                             <label class="prediction_covid" for="prediction_percent">COVID</label>
                             <progress class="prediction_percent" value='50' min="0" max='100'
                                 oninput="document.getElementById('codid_prediction_value').innerHTML=this.value;"></progress>
@@ -291,7 +359,7 @@ progress[value] {
                     </div>
                 </form>
 
-   
+                <!-- <img class="center_image" src="{{heats.8.photo.url}}" alt=""> -->
             </div>
             <div class="heatmap_con">
                 <div class="name_heatmap">Heat&nbspMap</div>
@@ -300,18 +368,33 @@ progress[value] {
                             <label class="rigid_controller_color" for="heatmap_rigid_number">Rigid</label>
                             <input class="rigid_controll_bar" type="range" name="heatmap_rigid_number" min="1" max="10" value="5" step="1"
                                 oninput="document.getElementById('rigid_value').innerHTML=this.value;
-                                var percent_rigid = this.value;
-                                console.log(percent_rigid);
+                                var num_rigid = this.value;
+                                var image = change_heatmap(num_rigid);
+                                document.getElementById('heatmap_image').src = image;
 
-                                " />
+                                // 코드 단순화 시도
+                                // var image_url = '{{heats.';
+                                // image_url += num_image;
+                                // image_url += '.photo.url}}';
+                                // var image_url = chage_url(image_url);
+                                // console.log(image_url);
+                                // document.getElementById('heatmap_image').src = image_url;
+                                
+                            "/>
                             <span id="rigid_value">5</span>
                             
                         </div>
                         <div class="heatmap_opacity_controller">
                             <label class="opacity_controller_color" for="heatmap_opacity_number">Opacity</label>
-                            <input class="opacity_controll_bar" type="range" name="heatmap_opacity_number" min="0" max="100" value="100" step="1"
-                                oninput="document.getElementById('opacity_value').innerHTML=this.value; var percent_opacity = this.value; console.log(percent_opacity);" />
-                            <span id="opacity_value" class="opacity_value">100</span><span class="opacity_value opacity_percent">%</span>
+                            <input class="opacity_controll_bar" type="range" name="heatmap_opacity_number" min="0" max="100" value="50" step="1"
+                                oninput="document.getElementById('opacity_value').innerHTML=this.value;
+                                var percent_opacity = this.value;
+                                // console.log(percent_opacity);
+                                var num_opacity = this.value;
+                                // var opacity = change_opacity(percent_opacity);
+                                document.getElementById('heatmap_image').style.opacity = num_opacity + '%';
+                                " />
+                            <span id="opacity_value" class="opacity_value">50</span><span class="opacity_value opacity_percent">%</span>
                         </div>
                     </form>
                 </div>
@@ -320,12 +403,7 @@ progress[value] {
 
 </body>
 
-<script>
-    function show_percent(value) {
-        
-        console.log(document.getElementById('rigid_value').innerHTML);
-    }
-</script>
-
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
 {% endblock %}

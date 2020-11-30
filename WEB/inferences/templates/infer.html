@@ -1,4 +1,3 @@
-
 {% block body %}
 
 <script>
@@ -342,18 +341,18 @@ progress[value]::-webkit-progress-value {
                             </div> -->
 
                             <label class="prediction_covid" for="prediction_percent">COVID</label>
-                            <progress class="prediction_percent" value='50' min="0" max='100'
+                            <progress class="prediction_percent" value='{{xray.pos_percent}}' min="0" max='100'
                                 oninput="document.getElementById('codid_prediction_value').innerHTML=this.value;"></progress>
-                            <span id="codid_prediction_value" class="codid_prediction_value">50</span><span
+                            <span id="codid_prediction_value" class="codid_prediction_value">{{xray.pos_percent}}</span><span
                                 class="codid_prediction_value prediction_percent_character">%</span>
                         </div>
                         
                         <!-- NON COVID -->
                         <div class="prediction_content_container_NONCOVID">
                             <label class="prediction_noncovid" for="prediction_percent">NON&nbspCOVID</label>
-                            <progress class="prediction_percent_noncovid" value='50' min="0" max='100'
+                            <progress class="prediction_percent_noncovid" value='{{xray.neg_percent}}' min="0" max='100'
                                 oninput="document.getElementById('noncodid_prediction_value').innerHTML=this.value;"></progress>
-                            <span id="noncodid_prediction_value" class="noncodid_prediction_value">50</span>
+                            <span id="noncodid_prediction_value" class="noncodid_prediction_value">{{xray.neg_percent}}</span>
                             <span class="noncodid_prediction_value prediction_percent_character_noncovid">%</span>
                         </div>
                     </div>

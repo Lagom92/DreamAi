@@ -67,6 +67,17 @@ font-family: 'Roboto', sans-serif;
   flex-wrap: wrap;
 }
 
+#txt {
+  margin: 10px;
+  padding: 20px;
+  color: black;
+  text-align: center;
+  border-radius: 5px;
+  background: #719dbb;
+  flex-wrap: wrap;
+  border-style: none;
+}
+
 </style>
 
 <body>
@@ -83,14 +94,30 @@ font-family: 'Roboto', sans-serif;
       <br>
       <h4>&nbsp&nbsp&nbsp{{patient.code}}&nbsp&nbsp&nbsp&nbsp&nbsp{{patient.name}}&nbsp&nbsp&nbsp&nbsp&nbsp{{patient.age}}&nbsp&nbsp&nbsp&nbsp&nbsp{{patient.sex}}</h4>
     <hr>
+
+    나이: {{ patient.age }}세
+    <br>
+    입원 기간: {{ patient.period }}일
+    
+    <br>
+
+    <!-- {% with now as today %}
+    나이: {{ patient.birth | timesince:today | slice:":2"}}세
+    {% endwith %} -->
+    <hr>
     </div>
-  
+      
     
     <div style="padding-left: 400px; width:1300px;">
       <br>
       <div class="flex-container" style="padding-left: px;">
-        <div class="flex-item" style='width:400px;'>{{patient.prescription}}</div>
-        <div class="flex-item" style='width:400px;'>{{patient.vitalSigns}}</div>
+        <!-- <div class="flex-item" style='width:400px;'>{{patient.prescription}}</div> -->
+        <div class="flex-item" style='width:400px;'>
+          <textarea name="" id="txt" cols="30" rows="10" disabled>{{patient.prescription }}</textarea>
+        </div>
+        <div class="flex-item" style='width:400px;'>
+          <textarea name="" id="" cols="30" rows="10">{{patient.vitalSigns }}</textarea>
+        </div>
       </div>
       <div class="flex-container">
         <div class="flex-item" style='width:400px;'>{{patient.history}}</div>

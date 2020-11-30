@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
 import os
-
+from datetime import datetime, date
 
 class Patient(models.Model):
     doctor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='patient')
@@ -27,17 +27,32 @@ class Patient(models.Model):
     def __str__(self):
         return self.name
 
+    def age(self):
+        res = int(datetime.now().year) - int(str(self.birth)[:4])
+        return str(res)
+    
+    def period(self):
+        res = datetime.now().date()  - self.admission
+        return str(res).split(' ')[0]
 
 class Xray(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name='xray')
     photo = models.ImageField(blank=True, null=True, upload_to="img/%Y%m%d")
-    created_at = models.DateTimeField(auto_now_add=True)
     prediction = models.CharField(max_length=100, null=True, blank=True)
+    neg_rate = models.FloatField(blank=True, null=True)
+    pos_rate = models.FloatField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     
     # delete 오버라이딩
     def delete(self, *args, **kwargs):
         os.remove(os.path.join(settings.MEDIA_ROOT, self.photo.path))
         super(Xray, self).delete(*args, **kwargs) 
+    
+    def neg_percent(self):
+        return self.neg_rate * 100
+
+    def pos_percent(self):
+        return self.pos_rate * 100
 
 
 class Heat(models.Model):

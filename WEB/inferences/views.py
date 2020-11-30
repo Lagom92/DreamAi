@@ -74,6 +74,8 @@ def examination(request, pk):
                     photo = cam[8:]
                 )
         xray.prediction = prediction
+        xray.neg_rate = nums[0]
+        xray.pos_rate = nums[1]
         xray.save()
 
         return redirect('inferences:infer', pk, xray.id)

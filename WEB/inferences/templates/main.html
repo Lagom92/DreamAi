@@ -17,22 +17,22 @@ margin-top: 20px;
 tr:nth-child(even){
     background-color: #EDF1F7;
 }
-tr:hover {
+tbody tr:hover {
     background-color: #d1d1d1;
 }
 
-tr:hover td {
-    background-color: transparent; /* or #000 */
+tbody td:hover td {
+    background-color: transparent;
 }
 
-th, td {
+td {
 border: 1px solid #444444;
 padding: 10px;
 }
 
 
 table { border-collapse:collapse; }  
-th, td { border:1px solid black; }
+td { border:1px solid black; }
 [class^=count-] tr {
   counter-increment: mycounter;
 }
@@ -47,49 +47,53 @@ th, td { border:1px solid black; }
 
 <body>
 <table class='count-2'>
-    <tr>
-    	<th></th>
-        <td>병실변호</td>
-    	<td>ID</td>
-        <td>Name</td>
-        <td>나이</td>
-        <td>성별</td>
-        <td>해당과</td>
-        <td>담당교수</td>
-        <td>입원날짜</td>
-        <td>재원기간</td>
-        <td>비고</td>
+    <thead>
+        <tr id="tr_hover">
+            <th>
+            <td>병실변호</td>
+            <td>ID</td>
+            <td>Name</td>
+            <td>나이</td>
+            <td>성별</td>
+            <td>해당과</td>
+            <td>담당교수</td>
+            <td>입원날짜</td>
+            <td>재원기간</td>
+            <td>비고</td>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for patient in patients %}
+        <tr style = "cursor:pointer;" onClick = " window.open('{% url 'inferences:detail' patient.id%}')" 
+        onMouseOver = " indow.status = '' " onMouseOut = " window.status = '' " target="_blank">
+            <td></td>
+            <td>{{patient.room}}</td>
+            <td>{{patient.code}}</td>
+            <td>{{patient.name}}</td>
+            <td>
+                <script>
+                    const today = new Date();
+                    const birthDate = {{patient.birth | date:'Y'}};
         
-    </tr>
-    {% for patient in patients %}
-     <tr style = "cursor:pointer;" onClick = " window.open('{% url 'inferences:detail' patient.id%}')" 
-     onMouseOver = " indow.status = '' " onMouseOut = " window.status = '' " target="_blank">
-         <td></td>
-         <td>{{patient.room}}</td>
-         <td>{{patient.code}}</td>
-         <td>{{patient.name}}</td>
-         <td>
-            <script>
-                const today = new Date();
-                const birthDate = {{patient.birth | date:'Y'}};
-    
-                let age = today.getFullYear() - birthDate.getFullYear();
-                const m = today.getMonth() - birthDate.getMonth();
-                if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-                    age--;
-                }
-    
-                document.writeln(age);
-                </script>
-                <!-- {{patient.birth | date:'Y'}} -->
-         <td>{{patient.sex}}</td>
-         <td>{{patient.unit}}</td>
-         <td>{{patient.doctor}}</td>
-         <td>{{patient.admission | date:'Y.m.d'}}</td>
-         <td>{{patient.admission | date:'Y.m.d'}}, {% now "Y-m-d" %}</td>
-        <td>{{patient.etc}}</td>
-    </tr>
-    {% endfor %}
+                    let age = today.getFullYear() - birthDate.getFullYear();
+                    const m = today.getMonth() - birthDate.getMonth();
+                    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                        age--;
+                    }
+        
+                    document.writeln(age);
+                    </script>
+                    <!-- {{patient.birth | date:'Y'}} -->
+            <td>{{patient.sex}}</td>
+            <td>{{patient.unit}}</td>
+            <td>{{patient.doctor}}</td>
+            <td>{{patient.admission | date:'Y.m.d'}}</td>
+            <td>{{patient.admission | date:'Y.m.d'}}, {% now "Y-m-d" %}</td>
+            <td>{{patient.etc}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
     
 
 </table>

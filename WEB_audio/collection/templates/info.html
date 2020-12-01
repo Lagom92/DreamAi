@@ -6,37 +6,31 @@
     <title>Document</title>
 </head>
 <body>
-    
     <H1>Data form</H1>
-    
     <div>
         <form action="{% url 'info' %}" method="POST">
             {% csrf_token %}
-            <label for="age">age:</label>
+            <label for="age">나이 : </label>
             <input type="text" id="age" name="age" required>
             <br><br>
-
-            <label for="region">region:</label>
+            <label for="region">지역 : </label>
             <input type="text" id="region" name="region" required>
             <br><br>
-
-            <label for="sex">sex:</label>
+            <label for="sex">성별 : </label>
             <select name="sex" id="sex" required>
                 <option value="male">남성</option>
                 <option value="female">여성</option>
                 <option value="etc">기타</option>
             </select>
             <br><br>
-
-            <label for="state">state:</label>
+            <label for="state">감염여부 : </label>
             <select name="state" id="state" required>
-                <option value="none">코로나에 걸린적이 전혀 없다</option>
-                <option value="neg">코로나에 걸린적이 있지만 현재는 다 나았다</option>
-                <option value="pos">현재 코로나에 걸렸다</option>
+                <option value="none">코로나19에 감염 된 적 없음</option>
+                <option value="neg">코로나19에 감염 후 완치</option>
+                <option value="pos">현재 코로나19 양성판정</option>
             </select>
             <br><br>
-
-            <input class="btn" type="submit" value="Submit">
+            <input class="btn" type="submit" value="제출&녹음하기">
         </form>
     </div>
 </body>

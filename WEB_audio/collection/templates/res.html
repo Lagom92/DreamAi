@@ -1,24 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Co-Det:A</title>
+  <link href="../static/css/styles.css" rel="stylesheet" />
+  <link rel="icon" type="image/x-icon" href="../static/assets/img/favicon.ico" />
 </head>
+
 <body>
-    
-    <div>
-        <a href="{% url 'index' %}">
-            <button>Home</button>
-        </a>
-        
-        <h1>res</h1>
-        {{prediction}}
-        
-        {{nums.0}}
-        {{nums.1}}
+  <!-- Navigation-->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="{% url 'index' %}">Febreath</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'index' %}">Home</a></li>
+        </ul>
+      </div>
     </div>
-
-
+  </nav>
+  <section class="projects-section bg-dark text-center" id="projects">
+    <div class="container">
+      <h2 class="text-white mb-4">Co-Det:A 기침 데이터 진단 결과</h2>
+      <div class="row align-items-center no-gutters mb-4 mb-lg-5">
+          <div class="col-xl-6 col-lg-7">
+            <img class="img-fluid align-items-md-center mb-3" src="../static/assets/img/img-10.jpg" alt="기침하는 사진" />
+          </div>
+          <div class="col-xl-4col-lg-5">
+            <div class="featured-text text-center text-lg-left">
+              <p class="text-white-50" style="margin-bottom: 10px">{{prediction}}</p>
+              <p class="text-white-50 mb-0" style="margin-bottom: 10px">{{nums.0|floatformat:2}}</p>
+              <p class="text-white-50 mb-0" style="margin-bottom: 10px">{{nums.1|floatformat:2}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
 </body>
+
 </html>

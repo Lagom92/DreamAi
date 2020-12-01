@@ -44,11 +44,10 @@ function startRecording() {
 function pauseRecording(){
 	if (rec.recording){
 		rec.stop();
-		pauseButton.innerHTML="Resume";
+		pauseButton.innerHTML="계속";
 	}else{
 		rec.record()
-		pauseButton.innerHTML="Pause";
-
+		pauseButton.innerHTML="정지";
 	}
 }
 
@@ -57,7 +56,7 @@ function stopRecording() {
 	recordButton.disabled = false;
 	pauseButton.disabled = true;
 
-	pauseButton.innerHTML="Pause";
+	pauseButton.innerHTML="멈춤";
 	
 	rec.stop();
 
@@ -82,7 +81,7 @@ function createDownloadLink(blob) {
 
 	link.href = url;
 	link.download = filename+".wav";
-	link.innerHTML = "Save";
+	link.innerHTML = "저장";
 
 	li.appendChild(au);
 	
@@ -95,7 +94,7 @@ function createDownloadLink(blob) {
 
 	var upload = document.createElement('a');
 	upload.href="http://localhost:8000/res";
-	upload.innerHTML = "Inference";
+	upload.innerHTML = "예측하기";
 	upload.addEventListener("click", function(event){
 		  var xhr=new XMLHttpRequest();
 		  xhr.onload=function(e) {

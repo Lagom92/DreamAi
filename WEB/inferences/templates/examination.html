@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block body %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
 <style>
 body{
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
+margin: 0;
+font-family: 'Roboto', sans-serif;
 }
 .wrapper .sidebar{
     padding-top: 30px;
@@ -17,6 +18,7 @@ body{
     transition:0.3s;
     transition-property: width;
     overflow-y: auto;
+    margin-top: -70px;
 }
 
 .sidebar a{
@@ -29,8 +31,21 @@ body{
     box-sizing: border-box;
     transition-property: background;
 }
+
+.here{
+  color: #fff;
+  display: block;
+  width: 100%;
+  line-height: 60px;
+  text-decoration: none;
+  padding-left: 40px;
+  box-sizing: border-box;
+  transition-property: background;
+  background: #4B688D;
+}
+
 .sidebar a:hover{
-    background: #4B688D
+    background: #4B688D;
 }
 
 .sidebar i{
@@ -61,10 +76,10 @@ body{
     <div class='wrapper'>
         <div class='sidebar'>
             <a href="{% url 'inferences:detail' patient.id %}"><i class="fas fa-vials"></i><span>Dash board</span></a>
-            <a href="#"><i class="fas fa-vials"></i><span>검사</span></a>
-            <!-- <a href=""><i class="fas fa-poll-h"></i><span>결과</span></a> -->
+            <div class='here'><i class="fas fa-vials"></i><span>검사</span></div>    
+            <a href=""><i class="fas fa-poll-h"></i><span>결과</span></a>
             <a href="{% url 'inferences:editInfo' patient.id %}"><i class="fas fa-pencil-ruler"></i><span>정보수정</span></a>
-        </div>
+            <a href="{% url 'inferences:editInfo' patient.id %}"><i class="fas fa-hammer"></i><span>Audio&CXR(beta)</span></a>
     </div>
         <div class="container">
             <div class='row text-center'>

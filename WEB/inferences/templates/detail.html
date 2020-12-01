@@ -7,7 +7,9 @@ body{
 margin: 0;
 font-family: 'Roboto', sans-serif;
 }
-.wrapper .sidebar{
+
+/* sidebar */
+.wrapper_r .sidebar{
     padding-top: 30px;
     background: #173051;
     position: fixed;
@@ -28,7 +30,7 @@ font-family: 'Roboto', sans-serif;
   padding-left: 40px;
   box-sizing: border-box;
   transition-property: background;
-  background: #4B688D;
+  background: #4B688D
 }
 
 .sidebar a{
@@ -49,86 +51,119 @@ font-family: 'Roboto', sans-serif;
     padding-right: 10px;
 }
 
-.flex-container {
-  margin: 10px;
-  padding: 15px;
-  border-radius: 5px;
-  background: #EDF1F7;
-  display: flex;
+.header{
+grid-area: header;
+background-color: #aec3e4 ;
+overflow: auto;
+text-align: center;
 }
 
-.flex-item {
-  margin: 10px;
-  padding: 20px;
-  color: black;
-  text-align: center;
-  border-radius: 5px;
-  background: #719dbb;
-  flex-wrap: wrap;
+.midTop{
+grid-area: midTop;
+background-color: #aec3e4;
+overflow: auto;
+text-align: center;
+}
+
+.midBottom{
+grid-area: midBottom;
+background-color: #aec3e4;
+overflow: auto;
+text-align: center;
+}
+
+.footer{
+grid-area: footer;
+background-color: #aec3e4;
+overflow: auto;
+}
+
+.wrapper {
+  margin-left:280px;
+  display: grid;
+  grid-template-columns: 4fr 4fr 4fr 4fr;
+  grid-template-rows: 100px 100px 100px 100px;
+  grid-template-areas:
+  "header midTop midTop midBottom"
+  "header midTop midTop midBottom"
+  "header footer footer footer"
+  "header footer footer footer";
+  grid-gap: 10px;
+  overflow: auto;
+  width: 1100px;
+  height: 500px;
+  background: #EDF1F7;
+  padding:30px;
+ }
+
+.underline{
+  margin-top:-1px; 
+  width:150px; 
+  background:rgb(184, 184, 184);  
+  height: 2px;
 }
 
 #txt {
-  margin: 10px;
-  padding: 20px;
   color: black;
   text-align: center;
-  border-radius: 5px;
-  background: #719dbb;
+  background:#aec3e4;
   flex-wrap: wrap;
   border-style: none;
+  overflow: hidden;
+}
+
+#txt {
+  color: black;
+  text-align: center;
+  background:#aec3e4;
+  flex-wrap: wrap;
+  border-style: none;
+  overflow: hidden;
 }
 
 </style>
 
 <body>
-    <div class='wrapper'>
+    <div class='wrapper_r'>
         <div class='sidebar'>
             <div class='here'><i class="fas fa-vials"></i><span>Dash board</span></div>
             <a href="{% url 'inferences:examination' patient.id %}"><i class="fas fa-vials"></i><span>검사</span></a>
-            <!-- <a href=""><i class="fas fa-poll-h"></i><span>결과</span></a> -->
+            <a href=""><i class="fas fa-poll-h"></i><span>결과</span></a>
             <a href="{% url 'inferences:editInfo' patient.id %}"><i class="fas fa-pencil-ruler"></i><span>정보수정</span></a>
-        </div>
+            <a href="{% url 'inferences:editInfo' patient.id %}"><i class="fas fa-hammer"></i><span>Audio&CXR(beta)</span></a>
+          </div>
     </div>
 
     <div class='patient' style="padding-left: 250px;">
       <br>
-      <h4>&nbsp&nbsp&nbsp{{patient.code}}&nbsp&nbsp&nbsp&nbsp&nbsp{{patient.name}}&nbsp&nbsp&nbsp&nbsp&nbsp{{patient.age}}&nbsp&nbsp&nbsp&nbsp&nbsp{{patient.sex}}</h4>
+      <h4>&nbsp&nbsp&nbsp{{patient.code}}&nbsp&nbsp&nbsp&nbsp&nbsp{{patient.name}}&nbsp&nbsp&nbsp&nbsp&nbsp {% with now as today %}
+        {{ patient.birth | timesince:today | slice:":2"}}세
+        {% endwith %}&nbsp&nbsp&nbsp&nbsp&nbsp{{patient.sex}}</h4>
     <hr>
 
-    나이: {{ patient.age }}세
-    <br>
-    입원 기간: {{ patient.period }}일
-    
-    <br>
-
-    <!-- {% with now as today %}
-    나이: {{ patient.birth | timesince:today | slice:":2"}}세
-    {% endwith %} -->
-    <hr>
     </div>
-      
-    
-    <div style="padding-left: 400px; width:1300px;">
-      <br>
-      <div class="flex-container" style="padding-left: px;">
-        <!-- <div class="flex-item" style='width:400px;'>{{patient.prescription}}</div> -->
-        <div class="flex-item" style='width:400px;'>
-          <textarea name="" id="txt" cols="30" rows="10" disabled>{{patient.prescription }}</textarea>
+        <div class="wrapper">
+        <div class="header"><h4>Vital Signs<hr class='underline'></h4>&nbsp&nbsp날짜&nbsp&nbsp&nbsp시간&nbsp&nbsp&nbsp혈압&nbsp&nbsp&nbsp맥박&nbsp&nbsp&nbsp호흡&nbsp&nbsp&nbsp체온{{patient.vitalSigns}}</div>
+        <div class="midTop"><h4>Prescription<hr class='underline'></h4>
+          <textarea name="" id="txt" cols="30" rows="10" disabled>{{patient.prescription}}</textarea>
         </div>
-        <div class="flex-item" style='width:400px;'>
-          <textarea name="" id="" cols="30" rows="10">{{patient.vitalSigns }}</textarea>
-        </div>
-      </div>
-      <div class="flex-container">
-        <div class="flex-item" style='width:400px;'>{{patient.history}}</div>
-        <div class="flex-item" style='width:500px;'><p>xrays</p>
+        <div class="midBottom"><h4>History<hr class='underline'></h4>
+          <textarea name="" id="txt" cols="30" disabled>{{patient.history}}</textarea>
+          </div>
+        <div class="footer"><h4 style='text-align: center;'>X-rays<hr class='underline'></h4>
           <ol>
-            {% for xray in xrays %}
-            <li><a style="color:black;" href="{%url 'inferences:infer' patient.id xray.id%}">{{xray.photo}}&nbsp&nbsp{{xray.prediction}}</a></li>
+          {% for xray in xrays %}
+          <li style='margin-left: 150px;'><a style="color:black;" href="{%url 'inferences:infer' patient.id xray.id%}">{{xray.photo}}&nbsp&nbsp{{xray.prediction}}</a></li>
             {% endfor %}
           </ol>
           </div>
-      </div>
+        </div>
+
+        
+    <!-- 나이: {{ patient.age }}세
+    <br>
+    입원 기간: {{ patient.period }}일
+       -->
 
       <!-- {{patient.code}}
       {{patient.name}}
@@ -140,7 +175,7 @@ font-family: 'Roboto', sans-serif;
       {% for xray in xrays %}
           {{xray.id}}
           {{xray.created_at}}
-      {% endfor %} -->
+      {% endfor %} -->  
     </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

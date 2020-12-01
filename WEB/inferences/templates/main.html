@@ -3,8 +3,6 @@
 
 <style>
 /* 표 스타일 */
-
-
 table {
 width: 80%;
 border: 1px solid #444444;
@@ -30,7 +28,6 @@ border: 1px solid #444444;
 padding: 10px;
 }
 
-
 table { border-collapse:collapse; }  
 td { border:1px solid black; }
 [class^=count-] tr {
@@ -40,25 +37,23 @@ td { border:1px solid black; }
   content: counter(mycounter) " ";
 }
 .count-1 tr:nth-child(1) { counter-reset: mycounter; }
-.count-2 tr:nth-child(2) { counter-reset: mycounter; }
-}
 
 </style>
 
 <body>
-<table class='count-2'>
+<table class='count-1'>
     <thead>
         <tr id="tr_hover">
             <th>
             <td>병실변호</td>
             <td>ID</td>
             <td>Name</td>
-            <td>나이</td>
+            <td>나이(세)</td>
             <td>성별</td>
             <td>해당과</td>
             <td>담당교수</td>
             <td>입원날짜</td>
-            <td>재원기간</td>
+            <td>재원기간(일)</td>
             <td>비고</td>
             </th>
         </tr>
@@ -71,30 +66,16 @@ td { border:1px solid black; }
             <td>{{patient.room}}</td>
             <td>{{patient.code}}</td>
             <td>{{patient.name}}</td>
-            <td>
-                <script>
-                    const today = new Date();
-                    const birthDate = {{patient.birth | date:'Y'}};
-        
-                    let age = today.getFullYear() - birthDate.getFullYear();
-                    const m = today.getMonth() - birthDate.getMonth();
-                    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-                        age--;
-                    }
-        
-                    document.writeln(age);
-                    </script>
-                    <!-- {{patient.birth | date:'Y'}} -->
+            <td>{{patient.age}}</td>
             <td>{{patient.sex}}</td>
             <td>{{patient.unit}}</td>
             <td>{{patient.doctor}}</td>
             <td>{{patient.admission | date:'Y.m.d'}}</td>
-            <td>{{patient.admission | date:'Y.m.d'}}, {% now "Y-m-d" %}</td>
+            <td>{{ patient.period }}</td>
             <td>{{patient.etc}}</td>
         </tr>
         {% endfor %}
     </tbody>
-    
 
 </table>
 

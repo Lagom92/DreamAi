@@ -7,6 +7,8 @@ body{
 margin: 0;
 font-family: 'Roboto', sans-serif;
 }
+
+/* sidebar */
 .wrapper_r .sidebar{
     padding-top: 30px;
     background: #173051;
@@ -101,6 +103,15 @@ overflow: auto;
   height: 2px;
 }
 
+#txt {
+  color: black;
+  text-align: center;
+  background:#aec3e4;
+  flex-wrap: wrap;
+  border-style: none;
+  overflow: hidden;
+}
+
 </style>
 
 <body>
@@ -116,32 +127,34 @@ overflow: auto;
 
     <div class='patient' style="padding-left: 250px;">
       <br>
-      <h4>&nbsp&nbsp&nbsp{{patient.code}}&nbsp&nbsp&nbsp&nbsp&nbsp{{patient.name}}&nbsp&nbsp&nbsp&nbsp&nbsp{{patient.age}}&nbsp&nbsp&nbsp&nbsp&nbsp{{patient.sex}}</h4>
+      <h4>&nbsp&nbsp&nbsp{{patient.code}}&nbsp&nbsp&nbsp&nbsp&nbsp{{patient.name}}&nbsp&nbsp&nbsp&nbsp&nbsp {% with now as today %}
+        {{ patient.birth | timesince:today | slice:":2"}}세
+        {% endwith %}&nbsp&nbsp&nbsp&nbsp&nbsp{{patient.sex}}</h4>
     <hr>
 
-    <!-- {{patient.birth | date:'Y'}}년생
-      <br>
-      입원 기간: {{patient.admission | timesince }}
-      <br>
-      {% with now as today %}
-      나이: {{ patient.birth | timesince:today | slice:":2"}}세
-      {% endwith %}
-      <hr>
-       -->
     </div>
-  
-      <div class="wrapper">
+        <div class="wrapper">
         <div class="header"><h4>Vital Signs<hr class='underline'></h4>&nbsp&nbsp날짜&nbsp&nbsp&nbsp시간&nbsp&nbsp&nbsp혈압&nbsp&nbsp&nbsp맥박&nbsp&nbsp&nbsp호흡&nbsp&nbsp&nbsp체온{{patient.vitalSigns}}</div>
-        <div class="midTop"><h4>Prescription<hr class='underline'></h4>{{patient.prescription}}</div>
-        <div class="midBottom"><h4>History<hr class='underline'></h4>{{patient.history}}</div>
+        <div class="midTop"><h4>Prescription<hr class='underline'></h4>
+          <textarea name="" id="txt" cols="30" rows="10" disabled>{{patient.prescription}}</textarea>
+        </div>
+        <div class="midBottom"><h4>History<hr class='underline'></h4>
+          <textarea name="" id="txt" cols="30" disabled>{{patient.history}}</textarea>
+          </div>
         <div class="footer"><h4 style='text-align: center;'>X-rays<hr class='underline'></h4>
           <ol>
-            {% for xray in xrays %}
-            <li style='margin-left: 150px;'><a style="color:black;" href="{%url 'inferences:infer' patient.id xray.id%}">{{xray.photo}}&nbsp&nbsp{{xray.prediction}}</a></li>
+          {% for xray in xrays %}
+          <li style='margin-left: 150px;'><a style="color:black;" href="{%url 'inferences:infer' patient.id xray.id%}">{{xray.photo}}&nbsp&nbsp{{xray.prediction}}</a></li>
             {% endfor %}
           </ol>
           </div>
         </div>
+
+        
+    <!-- 나이: {{ patient.age }}세
+    <br>
+    입원 기간: {{ patient.period }}일
+       -->
 
       <!-- {{patient.code}}
       {{patient.name}}

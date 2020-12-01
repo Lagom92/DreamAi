@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="description" content="" />
   <meta name="author" content="" />
   <title>Febreath - Codet for Audio</title>
-  <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+  <link rel="icon" type="image/x-icon" href="../static/assets/img/favicon.ico" />
   <!-- Font Awesome icons (free version)-->
   <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
   <!-- Google fonts-->
@@ -43,7 +44,7 @@
     <div class="container d-flex h-100 align-items-center">
       <div class="mx-auto text-center">
         <h1 class="mx-auto my-0 text-uppercase">Co - Det: <strong>A</strong></h1>
-        <h2 class="text-white-50 mx-auto mt-2 mb-5">기침 소리로 코로나19를 진단할 수 있는 AI 모델 개발 진행중에 있습니다</h2>
+        <h2 class="text-white-50 mx-auto mt-2 mb-5"> 기침 소리로 코로나19 테스트를 진행하고<br/> 기침소리를 수집합니다.</h2>
         <a class="btn btn-primary js-scroll-trigger" href="#about">Get Started</a>
       </div>
     </div>
@@ -55,54 +56,70 @@
         <div class="col-lg-8 mx-auto">
           <h2 class="text-white mb-4">코로나19 종식을 위해 목소리를 모아 주세요</h2>
           <p class="text-white-50">
-            당신의 목소리로 코로나19를 종식 시킬 수 있습니다. 기침 소리로 코로나19를 테스트 해보고 목소리를 수집합니다.
-            <a href="https://jinhyuk.kim/">샘플 페이지</a>
-            DensNet201 모델을 이용한 AI 모델로 기침소리를 분석해 코로나19 감염여부를 진단 할 수 있습니다.
+            저희 Febreath 는 텐서플로우 사전 학습모델 DensNet201 이용한 <a href="https://jinhyuk.kim/">Codet:X</a> 서비스를 진행 중에 있으며, 현재 기침소리를 수집을 통한 모델 개발을 하고 있습니다.
           </p>
         </div>
       </div>
-      <img class="img-fluid" src="assets/img/mic02.png" alt="" />
     </div>
     <!-- ////////////////////////////////////////////////////////////////// -->
     <div id="myModal">
       <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
-      Inference Audio
-    </button>
-
-    <a href="{% url 'info' %}"><button>Meta data</button></a>
-
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+      <div class="mx-auto text-center">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+          Inference Audio
         </button>
       </div>
-      <div class="modal-body">
+      <img class="img-fluid" src="../static/assets/img/mic02.png" alt="" />
 
-        <div id="controls">
-          <button id="recordButton">Record</button>
-          <button id="pauseButton" disabled>Pause</button>
-          <button id="stopButton" disabled>Stop</button>
-      </div>
-      
-      <p><strong>Recordings:</strong></p>
-      
-      <ol id="recordingsList"></ol>
+      <!-- Modal -->
+      <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">설문조사</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div>
+                <form action="{% url 'info' %}" method="POST">
+                  {% csrf_token %}
+                  <label class="form-label" for="age"">나이</label>
+                  <input type="number" min="0" step="1" class="form-control" id="age" name="age" placeholder="나이"
+                    tabindex="1" required>
+                    <br><br>
+                    <label class="form-label" for="region">지역</label>
+                    <input type="text" class="form-control" id="region" name="region" placeholder="시/군/구" tabindex="2"
+                      required>
+                    <br><br>
+                    <label class="form-label" for="sex">성별</label>
+                    <select class="form-control" name="sex" id="sex" required>
+                      <option value="male">남성</option>
+                      <option value="female">여성</option>
+                      <option value="etc">기타</option>
+                    </select>
+                    <br><br>
 
+                    <label class="form-label" for="state">감염여부 </label>
+                    <select  class="form-control" name="state" id="state" required>
+                      <option value="none">코로나19에 감염 된 적 없음</option>
+                      <option value="neg">코로나19에 감염 후 완치</option>
+                      <option value="pos">현재 코로나19 양성판정</option>
+                    </select>
+                    <br><br>
+                    <input class="btn btn-primary" type="submit" value="Submit">
+                </form>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-sm" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <!-- <button type="button" class="btn btn-primary">Understood</button> -->
-      </div>
-    </div>
-  </div>
-</div>
-<!-- ////////////////////////////////////////////////////////////////// -->
+      <!-- ////////////////////////////////////////////////////////////////// -->
     </div>
   </section>
   <!-- Projects-->
@@ -110,48 +127,13 @@
     <div class="container">
       <!-- Featured Project Row-->
       <div class="row align-items-center no-gutters mb-4 mb-lg-5">
-        <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="assets/img/bg-masthead.jpg" alt="" />
+        <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="../static/assets/img/demo-image-04.jpg"
+            alt="" />
         </div>
         <div class="col-xl-4 col-lg-5">
           <div class="featured-text text-center text-lg-left">
-            <h4>음성 모델</h4>
-            <p class="text-black-50 mb-0">음성 모델에 관한 설명이 들어갈 자리 입니다</p>
-          </div>
-        </div>
-      </div>
-      <!-- Project One Row-->
-      <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
-        <div class="col-lg-6"><img class="img-fluid" src="assets/img/cough-img-01.jpg" alt="" /></div>
-        <div class="col-lg-6">
-          <div class="bg-black text-center h-100 project">
-            <div class="d-flex h-100">
-              <div class="project-text w-100 my-auto text-center text-lg-left">
-                <h4 class="text-white">Misty</h4>
-                <p class="mb-0 text-white-50">An example of where you can put an image of a project, or anything else,
-                  along with a description.</p>
-                <hr class="d-none d-lg-block mb-0 ml-0" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Project Two Row-->
-      <div class="row justify-content-center no-gutters">
-        <div class="col-lg-6"><img class="img-fluid" src="assets/img/mel-spectrogram-01.PNG" alt="" style="
-          padding-top: 50px;
-          border-top-width: 20px;
-          padding-left: 50px;
-      "/></div>
-        <div class="col-lg-6 order-lg-first">
-          <div class="bg-black text-center h-100 project">
-            <div class="d-flex h-100">
-              <div class="project-text w-100 my-auto text-center text-lg-right">
-                <h4 class="text-white">Mountains</h4>
-                <p class="mb-0 text-white-50">Another example of a project with its respective description. These
-                  sections work well responsively as well, try this theme on a small screen!</p>
-                <hr class="d-none d-lg-block mb-0 mr-0" />
-              </div>
-            </div>
+            <h4>Co Det - A</h4>
+            <p class="text-black-50 mb-0">Co Det - A 는 기침 소리로 코로나19의 감염 여부를 진단 할 수 있는 인공지능 모델 입니다.</p>
           </div>
         </div>
       </div>
@@ -217,7 +199,7 @@
   </section>
   <!-- Footer-->
   <footer class="footer bg-black small text-center text-white-50">
-    <div class="container">Copyright © Your Website 2020</div>
+    <div class="container">Copyright © Febreath 2020</div>
   </footer>
   <!-- Bootstrap core JS-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -226,9 +208,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
   <!-- Core theme JS-->
   <script src="../static/js/scripts.js"></script>
-
   <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
-  <script src="../static/js/record_modal.js"></script>
 </body>
 
 </html>

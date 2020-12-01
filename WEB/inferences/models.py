@@ -42,11 +42,17 @@ class Xray(models.Model):
     neg_rate = models.FloatField(blank=True, null=True)
     pos_rate = models.FloatField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
-
+    
     # delete 오버라이딩
     def delete(self, *args, **kwargs):
         os.remove(os.path.join(settings.MEDIA_ROOT, self.photo.path))
         super(Xray, self).delete(*args, **kwargs) 
+    
+    def neg_percent(self):
+        return self.neg_rate * 100
+
+    def pos_percent(self):
+        return self.pos_rate * 100
 
     def neg_percent(self):
         return self.neg_rate * 100

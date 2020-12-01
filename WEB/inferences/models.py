@@ -26,11 +26,11 @@ class Patient(models.Model):
 
     def __str__(self):
         return self.name
-
+        
     def age(self):
         res = int(datetime.now().year) - int(str(self.birth)[:4])
         return str(res)
-    
+
     def period(self):
         res = datetime.now().date()  - self.admission
         return str(res).split(' ')[0]
@@ -48,6 +48,12 @@ class Xray(models.Model):
         os.remove(os.path.join(settings.MEDIA_ROOT, self.photo.path))
         super(Xray, self).delete(*args, **kwargs) 
     
+    def neg_percent(self):
+        return self.neg_rate * 100
+
+    def pos_percent(self):
+        return self.pos_rate * 100
+
     def neg_percent(self):
         return self.neg_rate * 100
 

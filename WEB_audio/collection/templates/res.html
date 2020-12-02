@@ -31,18 +31,26 @@
     <div class="container">
       <h2 class="text-white mb-4">Co-Det:A 기침 데이터 진단 결과</h2>
       <div class="row align-items-center no-gutters mb-4 mb-lg-5">
-          <div class="col-xl-6 col-lg-7">
-            <img class="img-fluid align-items-md-center mb-3" src="../static/assets/img/img-10.jpg" alt="기침하는 사진" />
-          </div>
-          <div class="col-xl-4col-lg-5">
-            <div class="featured-text text-center text-lg-left">
-              <p class="text-white-50" style="margin-bottom: 10px">{{prediction}}</p>
-              <p class="text-white-50 mb-0" style="margin-bottom: 10px">{{nums.0|floatformat:2}}</p>
-              <p class="text-white-50 mb-0" style="margin-bottom: 10px">{{nums.1|floatformat:2}}</p>
-            </div>
+        <div class="col-xl-6 col-lg-7">
+          <img class="img-fluid align-items-md-center mb-3" src="../static/assets/img/img-10.jpg" alt="기침하는 사진" />
+        </div>
+        <div class="col-xl-4col-lg-5">
+          <div class="featured-text text-center text-lg-left">
+            <!-- <p class="text-white-50" style="margin-bottom: 10px"></p> -->
+            <h5 class="text-white mb-4">{{prediction}}</h5>
+            <progress value=50 min="0" max='100'
+            oninput="document.getElementById('codid_prediction_value').innerHTML=this.value;"></progress>
+            <span id="codid_prediction_value" class="text-white-50 mb-0">{{nums.0|floatformat:2}}</span>
+            <!-- <p class="text-white-50 mb-0" style="margin-bottom: 10px">{{nums.0|floatformat:2}}</p> -->
+            <br/>
+            <progress value=50 min="0" max='100'
+            oninput="document.getElementById('codid_prediction_value').innerHTML=this.value;"></progress>
+            <span id="codid_prediction_value" class="text-white-50 mb-0">{{nums.1|floatformat:2}}</span>
+            <!-- <p class="text-white-50 mb-0" style="margin-bottom: 10px">{{nums.1|floatformat:2}}</p> -->
           </div>
         </div>
       </div>
+    </div>
   </section>
 </body>
 

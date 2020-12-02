@@ -1,0 +1,431 @@
+{% block body %}
+<title>CODET</title>
+<link rel="icon" href="https://postfiles.pstatic.net/MjAyMDExMzBfMTk5/MDAxNjA2NzM2NzMwNzMx.KOc9CkkgcrpQ-x-1seX6MHc6o9UAAVTFY7AQCVzvpuIg.W30UUeHPY29POv32V1UQnIaxfcIp7QWOaeeTNsTc0eog.PNG.smilekjy1001/favicon.png?type=w773">
+
+<!-- 히트맵 -->
+<script>
+    // function chage_url(image_url){
+    //     console.log(image_url);
+    //     return image_url
+    // }
+
+    function change_heatmap(num_rigid) {
+       if (num_rigid == 1){
+           var image = '{{heats.0.photo.url}}';
+        //    console.log('s6');
+           return image
+       }
+       else if(num_rigid==2){
+           var image = '{{heats.1.photo.url}}';
+        //    console.log('s7');
+           return image
+       }
+       else if(num_rigid==3){
+           var image = '{{heats.2.photo.url}}';
+        //    console.log('s7');
+           return image
+       }
+       else if(num_rigid==4){
+           var image = '{{heats.3.photo.url}}';
+        //    console.log('s7');
+           return image
+       }
+       else if(num_rigid==5){
+           var image = '{{heats.4.photo.url}}';
+        //    console.log('s7');
+           return image
+       }
+       else if(num_rigid==6){
+           var image = '{{heats.5.photo.url}}';
+        //    console.log('s7');
+           return image
+       }
+       else if(num_rigid==7){
+           var image = '{{heats.6.photo.url}}';
+        //    console.log('s7');
+           return image
+       }
+       else if(num_rigid==8){
+           var image = '{{heats.7.photo.url}}';
+        //    console.log('s7');
+           return image
+       }
+       else if(num_rigid==9){
+           var image = '{{heats.8.photo.url}}';
+        //    console.log('s7');
+           return image
+       }
+       else if(num_rigid==10){
+           var image = '{{heats.9.photo.url}}';
+        //    console.log('s7');
+           return image
+       }
+    }
+</script>
+
+<style>
+body{
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background:black;
+    overflow: hidden;
+    }
+    
+
+/* 왼쪽 sidebar */
+
+.wrapper .sidebar{
+padding-top: 30px;
+background: #292f36;
+position: absolute;
+width: 310px;
+height: calc(106%);
+z-index: 2;
+transition:0.3s;
+transition-property: width;
+overflow-y: auto;
+}
+
+.sidebar ol a{
+    display: block;
+    box-sizing: border-box;
+    /* border-top: 1px solid rgba(255,255,255,.1); */
+    /* border-bottom: 1px solid black; */
+    transition: .4s;
+}
+
+ol li:hover a{
+    padding-left: 10px;
+
+}
+
+.center_image {
+    position: fixed;
+    top:50%; left:50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/* 오른쪽 sidebar */
+.wrapper_r .sidebar_r{
+    padding-top: 30px;
+    background: #2b323a;
+    position: absolute;
+    top: -2rem;
+    width: 310px;
+    height: calc(110.9%);
+    transition:0.3s;
+    transition-property: width;
+    overflow-y: auto;
+    right: 0;
+}
+
+progress[value]::-webkit-progress-value {
+    background-image: -webkit-gradient(rgba(1,1,1,0.5));
+    border-radius: 2px;
+}
+
+.info {
+    position: absolute;
+    top: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.info_detail {
+    position: absolute;
+    top: 8rem;
+    line-height: 160%;
+}
+
+.prediction_container {
+    position: absolute;
+    left: 1rem;
+    top: 20rem;
+}
+
+.prediction_total_container {
+    position: relative;
+    color: white;
+}
+
+.prediction_content_container_COVID {
+    position: relative;
+    top: 2.5rem;
+    left: 2rem;
+}
+
+.prediction_text {
+    color: white;
+    position: absolute;
+    font-size: 20px;
+}
+
+.prediction_value {
+    position: relative;
+    left: 0.3rem;
+    color: white;
+}
+
+.prediction_covid{
+    position: relative;
+    left: -0.2rem;
+    color: white;
+    font-size: 12px;
+}
+
+.prediction_percent_character {
+    position: relative;
+    left: 0.25rem;
+}
+
+.prediction_content_container_NONCOVID {
+    position: absolute;
+    left: 4.8rem;
+    top: 4rem;
+}
+
+.prediction_noncovid {
+    position: absolute;
+    left: -5rem;
+    font-size: 12px;
+}
+
+.noncodid_prediction_value {
+    position: absolute;
+    left: 10.2rem;
+    top: -0.2rem;
+}
+
+.prediction_percent_noncovid {
+    position: relative;
+    left: -0.2rem;
+}
+
+.prediction_percent_character_noncovid {
+    position: relative;
+    left: 11.5rem;
+    top: -1.2rem;
+}
+
+       
+.name_heatmap {
+    color: white;
+    position: absolute;
+    left: 1rem;
+    font-size: 20px;
+}
+
+.heatmap_con {
+    position: absolute;
+    left: 0rem;
+    top: 32rem;
+}
+
+.heatmap_rigid_controller {
+    position: absolute;
+    left: 5rem;
+    top: 3rem;
+}
+
+.controll_bar {
+    position: absolute;
+    left: 1rem;
+    top: 0.2rem;
+}
+
+.rigid_controller_color {
+    color: white;
+    position: absolute;
+    left: -3rem;
+    top: -0.21rem;
+
+}
+
+#rigid_value {
+    position: absolute;
+    color: white;
+    left: 9rem;
+    top: -0.05rem;
+}
+
+.heatmap_opacity_controller {
+    position: absolute;
+    left: 3rem;
+    top: 2.5rem;
+    color: white;
+}
+
+.opacity_controll_bar {
+    position: absolute;
+    top: 2.5rem;
+    left: 2rem;
+}
+
+.opacity_controller_color {
+    position: absolute;
+    top: 2.3rem;
+    left: -1.8rem;
+}
+
+.opacity_value {
+    position: absolute;
+    left: 11rem;
+    top: 2.5rem;
+}
+
+.opacity_percent {
+    position: relative;
+    left: 13em;
+}
+
+.search_btn{
+    padding:8px;
+    background: rgb(166, 180, 185);
+    border-radius: 10px;
+    border:10px;
+    font-size:15px;
+    font-weight: 600;
+    color: black;
+    transition: 0.5s;
+    transition-property: background;
+    float: right;
+    text-decoration: none;   
+    margin-top: 600px;
+}
+
+.search_btn:hover{
+    background: rgb(115, 167, 185);
+    text-decoration: none;
+}
+
+.short{
+    overflow:hidden; 
+    text-overflow:ellipsis; 
+    
+}
+
+</style>
+
+<body>
+    <!-- 왼쪽 sidebar -->
+    <div class='wrapper'>
+        <div class='sidebar'>
+            <div style="font-size: 20px; color:white;">
+            <center>결과목록</center>
+            <br>
+            </div>
+            <ol>
+                {% for pred in preds %}
+                <li style="color: white;">
+                    <a href="{%url 'inferences:infer' xray.patient.id pred.id%}" style="color:white; text-decoration: none; font-size: 15px;">
+                    {{pred.created_at| date:'Y.m.d'}}&nbsp&nbsp{{pred.created_at| date:'Y.m.d'}}&nbsp&nbsp{{pred.prediction}}<br>
+                    </a>
+                </li><hr>
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+
+    <!-- 중앙사진 -->
+    
+    <div class='CXR'>
+        <img style='width:650px; height: 700px;' class="center_image" src="{{xray.photo.url}}" alt="">
+        <img id="heatmap_image" class="center_image" src="{{heats.4.photo.url}}" style="opacity: 50%; width:650px; height: 700px;" alt="">
+    </div>
+    
+
+    <!-- 오른쪽 sidebar -->
+    <div class='wrapper_r'>
+        <div class='sidebar_r'>
+            
+            <div class="info" style="font-size: 20px; color:white;">
+                <center style="font-size:30px;">{{xray.patient}}</center>
+                <div>
+                <center>{{xray.patient.code}}&nbsp&nbsp{{xray.patient.age}}세&nbsp&nbsp{{xray.patient.sex}}&nbsp&nbsp</center>
+                </div>
+                <hr style="margin-top: -0.5px; width: 250px;">
+                <br>
+            </div> 
+            
+            <div class="info_detail" style="color:white; margin-left: 10px; margin-top:15px;">
+            <div class='short'>
+            사진이름&nbsp:&nbsp{{xray.photo.url | slice:"20:"}}<br></div>
+            결과 일시&nbsp:&nbsp{{xray.created_at| date:'Y.m.d'}}<br>        
+            결과&nbsp:&nbsp{{xray.prediction}}<br>
+            </div>
+            <div class="prediction_container">
+                <form action="">
+                    <div class="prediction_total_container">
+                        <div class="prediction_text"></div>
+
+                        <!-- COVID -->
+                        <div class="prediction_content_container_COVID" style="margin-top: -130px;">
+                            <label class="prediction_covid" for="prediction_percent">COVID</label>
+                            <progress class="prediction_percent" value='{{xray.pos_percent}}' min="0" max='100'
+                                oninput="document.getElementById('codid_prediction_value').innerHTML=this.value;"></progress>
+                            <span id="codid_prediction_value" class="codid_prediction_value">{{xray.pos_percent | floatformat:"-2"}}</span><span
+                                class="codid_prediction_value prediction_percent_character">%</span>
+                        </div>
+                        
+                        <!-- NON COVID -->
+                        <div class="prediction_content_container_NONCOVID">
+                            <label class="prediction_noncovid" for="prediction_percent">NON&nbspCOVID</label>
+                            <progress class="prediction_percent_noncovid" value='{{xray.neg_percent}}' min="0" max='100'
+                                oninput="document.getElementById('noncodid_prediction_value').innerHTML=this.value;"></progress>
+                            <span id="noncodid_prediction_value" class="noncodid_prediction_value">{{xray.neg_percent | floatformat:"-2 "}}</span>
+                            <span class="noncodid_prediction_value prediction_percent_character_noncovid">&nbsp&nbsp&nbsp%</span>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- <img class="center_image" src="{{heats.8.photo.url}}" alt=""> -->
+            </div>
+            <div class="heatmap_con" style="margin-top: -160px;">
+                <div class="name_heatmap">Heatmap</div>
+                    <form action=""></form>
+                        <div class="heatmap_rigid_controller">
+                            <label class="rigid_controller_color" for="heatmap_rigid_number">Rigid</label>
+                            <input class="rigid_controll_bar" type="range" name="heatmap_rigid_number" min="1" max="10" value="5" step="1"
+                                oninput="document.getElementById('rigid_value').innerHTML=this.value;
+                                var num_rigid = this.value;
+                                var image = change_heatmap(num_rigid);
+                                document.getElementById('heatmap_image').src = image;
+
+                                // 코드 단순화 시도
+                                // var image_url = '{{heats.';
+                                // image_url += num_image;
+                                // image_url += '.photo.url}}';
+                                // var image_url = chage_url(image_url);
+                                // console.log(image_url);
+                                // document.getElementById('heatmap_image').src = image_url;
+                                
+                            "/>
+                            <span id="rigid_value">5</span>
+                            
+                        </div>
+                        <div class="heatmap_opacity_controller">
+                            <label class="opacity_controller_color" for="heatmap_opacity_number">Opacity</label>
+                            <input class="opacity_controll_bar" type="range" name="heatmap_opacity_number" min="0" max="100" value="50" step="1"
+                                oninput="document.getElementById('opacity_value').innerHTML=this.value;
+                                var percent_opacity = this.value;
+                                // console.log(percent_opacity);
+                                var num_opacity = this.value;
+                                // var opacity = change_opacity(percent_opacity);
+                                document.getElementById('heatmap_image').style.opacity = num_opacity + '%';
+                                " />
+                            <span id="opacity_value" class="opacity_value">50</span><span class="opacity_value opacity_percent">%</span>
+                        </div>
+                    </form>
+                </div>
+                <a href="#" class='search_btn'style="margin-right: 70px;">닫기</a>
+                <a href="{%url 'inferences:examination' xray.patient.id %}" class='search_btn' style="margin-right: 60px;">재검사</a>
+        </div>
+    </div>
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+{% endblock %}

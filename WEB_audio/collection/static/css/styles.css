@@ -5637,10 +5637,22 @@ a.close.disabled {
   line-height: 1.5;
 }
 
-.modal-body {
+/* .modal-body {
   position: relative;
   flex: 1 1 auto;
   padding: 1rem;
+} */
+.modal-body div p{
+  overflow: hidden;
+  flex: 1 1 auto;
+}
+.first-content{
+  width: 100%;
+  float:left;
+}
+.second-content{
+  width: 100%;
+  float: left;
 }
 
 .modal-footer {

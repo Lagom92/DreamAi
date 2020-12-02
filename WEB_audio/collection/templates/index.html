@@ -44,7 +44,7 @@
     <div class="container d-flex h-100 align-items-center">
       <div class="mx-auto text-center">
         <h1 class="mx-auto my-0 text-uppercase">Co - Det: <strong>A</strong></h1>
-        <h2 class="text-white-50 mx-auto mt-2 mb-5"> 기침 소리로 코로나19 테스트를 진행하고<br/> 기침소리를 수집합니다.</h2>
+        <h2 class="text-white-50 mx-auto mt-2 mb-5"> 기침 소리로 코로나19 테스트를 진행하고<br /> 기침소리를 수집합니다.</h2>
         <a class="btn btn-primary js-scroll-trigger" href="#about">Get Started</a>
       </div>
     </div>
@@ -56,7 +56,8 @@
         <div class="col-lg-8 mx-auto">
           <h2 class="text-white mb-4">코로나19 종식을 위해 목소리를 모아 주세요</h2>
           <p class="text-white-50">
-            저희 Febreath 는 텐서플로우 사전 학습모델 DensNet201 이용한 <a href="https://jinhyuk.kim/">Codet:X</a> 서비스를 진행 중에 있으며, 현재 기침소리를 수집을 통한 모델 개발을 하고 있습니다.
+            저희 Febreath 는 텐서플로우 사전 학습모델 DensNet201 이용한 <a href="http://codet.org/">Codet:X</a> 서비스를 진행 중에 있으며, 현재 기침소리를
+            수집을 통한 모델 개발을 하고 있습니다.
           </p>
         </div>
       </div>
@@ -82,8 +83,12 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
-              <div>
+            <div class="modal-body" style="padding-bottom: 10px; padding-top: 10px;">
+              <div class="first-content">
+                <p class="text-xl-center"> Codet-A는 기침 소리를 분석하는 AI 모델 입니다.<br/> 참가자로 부터 개인정보를 수집하지 않으니 안심하시고 <br/>음성데이터 수집에 참여 바랍니다.</p>
+                <button type="button" class="btn btn-primary first-button">동의하기</button>
+              </div>
+              <div class="second-content" style="display:none">
                 <form action="{% url 'info' %}" method="POST">
                   {% csrf_token %}
                   <label class="form-label" for="age"">나이</label>
@@ -101,9 +106,8 @@
                       <option value="etc">기타</option>
                     </select>
                     <br><br>
-
                     <label class="form-label" for="state">감염여부 </label>
-                    <select  class="form-control" name="state" id="state" required>
+                    <select class="form-control" name="state" id="state" required>
                       <option value="none">코로나19에 감염 된 적 없음</option>
                       <option value="neg">코로나19에 감염 후 완치</option>
                       <option value="pos">현재 코로나19 양성판정</option>

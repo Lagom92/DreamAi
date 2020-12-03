@@ -29,7 +29,7 @@
   </nav>
   <section class="projects-section bg-dark text-center" id="projects">
     <div class="container">
-      <h2 class="text-white mb-4">Co-Det:A 기침 데이터 진단 결과</h2>
+      <h2 class="text-white mb-4">CODET:A 기침 데이터 진단 결과</h2>
       <div class="row align-items-center no-gutters mb-4 mb-lg-5">
         <div class="col-xl-6 col-lg-7">
           <img class="img-fluid align-items-md-center mb-3" src="../static/assets/img/img-10.jpg" alt="기침하는 사진" />
@@ -38,18 +38,19 @@
           <div class="featured-text text-center text-lg-left">
             <!-- <p class="text-white-50" style="margin-bottom: 10px"></p> -->
             <h5 class="text-white mb-4">{{prediction}}</h5>
-            <progress value=50 min="0" max='100'
+            <progress value=100 min="0" max='100'
             oninput="document.getElementById('codid_prediction_value').innerHTML=this.value;"></progress>
             <span id="codid_prediction_value" class="text-white-50 mb-0">{{nums.0|floatformat:2}}</span>
             <!-- <p class="text-white-50 mb-0" style="margin-bottom: 10px">{{nums.0|floatformat:2}}</p> -->
             <br/>
-            <progress value=50 min="0" max='100'
+            <progress value=1 min="0" max='100'
             oninput="document.getElementById('codid_prediction_value').innerHTML=this.value;"></progress>
             <span id="codid_prediction_value" class="text-white-50 mb-0">{{nums.1|floatformat:2}}</span>
             <!-- <p class="text-white-50 mb-0" style="margin-bottom: 10px">{{nums.1|floatformat:2}}</p> -->
           </div>
         </div>
       </div>
+      <h5 class="text-white mb-3">텐서플로우 사전 학습모델 DensNet201 이용한 <a href="http://codet.org/">CODET:X</a> 서비스를 진행 하고 있습니다.</h5>
     </div>
   </section>
 </body>

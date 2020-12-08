@@ -32,9 +32,10 @@ class Info(models.Model):
     state_choices = (
         ('pos', '양성'),
         ('neg', '음성'),
-        ('none', '알수없음'),
+        ('cured', '완치'),
     )
     state = models.CharField(max_length=50, choices=state_choices)
+    disease = models.CharField(max_length=500, blank=True, null=True)
 
     def __str__(self):
         return self.sex

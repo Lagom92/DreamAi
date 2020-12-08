@@ -39,12 +39,12 @@ def infer(request):
 
 def info(request):
     if request.method == 'POST':
-        Info.objects.create(
+        info = Info.objects.create(
             age = request.POST['age'],
             region = request.POST['region'],
             sex = request.POST['sex'],
             state = request.POST['state'],
-
+            disease = request.POST.getlist('disease')
         )
 
         return redirect('pred')

@@ -87,63 +87,91 @@
                 <p class="text-xl-center"> CODET-A는 기침 소리를 분석하는 AI 모델 입니다.<br/> 참가자로 부터 개인정보를 수집하지 않으니 안심하시고 <br/>음성데이터 수집에 참여 바랍니다.</p>
                 <button type="button" class="btn btn-primary first-button">동의하기</button>
               </div>
+
               <div class="second-content" style="display:none">
+
                 <form action="{% url 'info' %}" method="POST">
                   {% csrf_token %}
                   <div class="container d-flex">
-                  <label class="form-label" for="age"">나이</label>&nbsp;
-                    <input type="number" min="0" step="1" class="form-control" id="age" name="age" placeholder="나이"
-                    tabindex="1" required>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <label class="form-label" for="region">지역</label>&nbsp;
-                    <input type="text" class="form-control" id="region" name="region" placeholder="시/군/구" tabindex="2"
-                    required>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <label class="form-label" for="sex">성별</label>&nbsp;
+                    <label class="form-label" for="age">나이</label>&nbsp;
+                    <input type="number" min="0" step="1" class="form-control" id="age" name="age" placeholder="나이" tabindex="1" required>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <label class="form-label" for="region">지역</label>
+                    &nbsp;
+                    <input type="text" class="form-control" id="region" name="region" placeholder="시/군/구" tabindex="2" required>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <label class="form-label" for="sex">성별</label>
+                    &nbsp;
                     <select class="form-control" name="sex" id="sex" required>
+                      <option value="etc">기타</option>
                       <option value="male">남성</option>
                       <option value="female">여성</option>
-                      <option value="etc">기타</option>
                     </select>
+                    
+                    
                   </div>
-                  <div class="form-group" style="padding-top: 10px; padding-bottom: 10px;">
+                  
+                  <label for="state">state:</label>
+                  <select name="state" id="state" required>
+                    <option value="neg">코로나에 걸린적이 전혀 없다</option>
+                    <option value="cured">코로나에 걸린적이 있지만 현재는 다 나았다</option>
+                    <option value="pos">현재 코로나에 걸렸다</option>
+                  </select>
+
+                  <br>
+                  <input type="checkbox" name="disease" value="cough" > 기침
+                  <input type="checkbox" name="disease" value="fever" > 발열
+                  <input type="checkbox" name="disease" value="taste" > 미각 상실
+                  <input type="checkbox" name="disease" value="sorethroat" > 인후통
+                  <input type="checkbox" name="disease" value="diarrhea" > 설사
+                  <input type="checkbox" name="disease" value="dyspnea" > 호흡 곤란
+                  <input type="checkbox" name="disease" value="smoker" > 흡연자
+                  <input type="checkbox" name="disease" value="highPressure" > 고혈압
+                  <input type="checkbox" name="disease" value="asthma" > 천식
+                  <input type="checkbox" name="disease" value="muscleHurt" > 근육통
+                
+                  <!-- <div class="form-group" style="padding-top: 10px; padding-bottom: 10px;">
                     <label class="form-label" for="state">감염여부 </label>&nbsp;
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="neg">
                       <label class="form-check-label" for="inlineRadio1">코로나19에 감염 된 적 없음</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="none">
                       <label class="form-check-label" for="inlineRadio2">코로나19에 감염 후 완치</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="pos">
                       <label class="form-check-label" for="inlineRadio3">현재 코로나19 양성판정</label>
                     </div>
-                  </div>
+                  </div> -->
+                  <!-- <input class="form-check-input" type="checkbox" id="disease_cough" value="disease_cough">
+
                   <div class="form-group" style="padding-top: 10px; padding-bottom: 10px;">
-                    <label class="form-label" for="state">증상 </label>&nbsp;
+                    <label class="form-label" for="symptoms">증상 </label>&nbsp;
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="checkbox" id="coughCheckbox" value="option1">
-                      <label class="form-check-label" for="coughCheckbox">기침</label>
+                      <label class="form-check-label" for="disease_cough">기침</label>
+                      <input class="form-check-input" type="checkbox" id="disease_cough" value="disease_cough">
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="checkbox" id="feverCheckbox" value="option2">
                       <label class="form-check-label" for="feverCheckbox">발열</label>
+                      <input class="form-check-input" type="checkbox" id="feverCheckbox" value="option2">
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="checkbox" id="tasteCheckbox" value="option3">
                       <label class="form-check-label" for="tasteCheckbox">미각/후각 기능 손상</label>
+                      <input class="form-check-input" type="checkbox" id="tasteCheckbox" value="option3">
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="checkbox" id="sorethroatCheckbox" value="option4">
                       <label class="form-check-label" for="sorethroatCheckbox">인후통</label>
+                      <input class="form-check-input" type="checkbox" id="sorethroatCheckbox" value="option4">
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="checkbox" id="diarrheaCheckbox" value="option5">
                       <label class="form-check-label" for="diarrheaCheckbox">설사</label>
+                      <input class="form-check-input" type="checkbox" id="diarrheaCheckbox" value="option5">
                     </div>
                     <div class="form-group">
-                      <input class="form-check-input" type="checkbox" id="dyspneaCheckbox" value="option6">
                       <label class="form-check-label" for="dyspneaCheckbox">호흡곤란</label>
+                      <input class="form-check-input" type="checkbox" id="dyspneaCheckbox" value="option6">
                     </div>
                     <div class="form-check form-check-inline">
                       <input class="form-check-input" type="checkbox" id="smokerCheckbox" value="option7">
@@ -161,10 +189,12 @@
                       <input class="form-check-input" type="checkbox" id="muscleHurtCheckbo" value="option10">
                       <label class="form-check-label" for="muscleHurtCheckbo">근육통</label>
                     </div>
-                  </div>
+                  </div> -->
+
                     <br><br>
                     <input class="btn btn-primary" type="submit" value="기침 테스트 시작">
                 </form>
+
               </div>
             </div>
             <div class="modal-footer">

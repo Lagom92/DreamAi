@@ -2085,7 +2085,7 @@ select.form-control:focus::-ms-value {
 .js-unhighlight-label {
 	color: #999 
 }
-/* .col-form-label {
+.col-form-label {
   padding-top: calc(0.375rem + 1px);
   padding-bottom: calc(0.375rem + 1px);
   margin-bottom: 0;
@@ -2105,8 +2105,7 @@ select.form-control:focus::-ms-value {
   padding-bottom: calc(0.25rem + 1px);
   font-size: 0.875rem;
   line-height: 1.5;
-} */
-
+}
 .form-control-plaintext {
   display: block;
   width: 100%;
@@ -7738,7 +7737,8 @@ button.bg-black:focus {
   margin-left: 1rem !important;
 }
 
-.m-4 {
+.mb-4,
+.my-4 {
   margin: 1.5rem !important;
 }
 
@@ -10292,16 +10292,16 @@ body {
 }
 
 .about-section {
-  padding-top: 5rem;
-  background: linear-gradient(to bottom, #000000 0%, rgba(0, 0, 0, 0.9) 65%, rgba(0, 0, 0, 0.8) 100%);
+  padding-top: 10rem;
+  background: linear-gradient(to bottom, #000000 0%, rgba(0, 0, 0, 0.9) 75%, rgba(0, 0, 0, 0.8) 100%);
 }
 .about-section p {
-  margin-bottom: 2rem;
+  margin-bottom: 5rem;
 }
-.about-section .featured-text {
+/* .about-section .featured-text {
   padding: 0 0 0 2rem;
   border-left: 0.5rem solid #64a19d;
-}
+} */
 
 .projects-section {
   padding: 10rem 0;

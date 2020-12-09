@@ -38,14 +38,14 @@
           <div class="featured-text text-center text-lg-left">
             <!-- <p class="text-white-50" style="margin-bottom: 10px"></p> -->
             <h5 class="text-white mb-4">{{prediction}}</h5>
-            <progress value=100 min="0" max='100'
+            <progress value={{nums.0|floatformat:3}} min="0" max='1'
             oninput="document.getElementById('codid_prediction_value').innerHTML=this.value;"></progress>
-            <span id="codid_prediction_value" class="text-white-50 mb-0">{{nums.0|floatformat:2}}</span>
+            <span id="codid_prediction_value" class="text-white-50 mb-0">{{nums.0|floatformat:3}}</span>
             <!-- <p class="text-white-50 mb-0" style="margin-bottom: 10px">{{nums.0|floatformat:2}}</p> -->
             <br/>
-            <progress value=1 min="0" max='100'
+            <progress value={{nums.1|floatformat:3}} min="0" max='1'
             oninput="document.getElementById('codid_prediction_value').innerHTML=this.value;"></progress>
-            <span id="codid_prediction_value" class="text-white-50 mb-0">{{nums.1|floatformat:2}}</span>
+            <span id="codid_prediction_value" class="text-white-50 mb-0">{{nums.1|floatformat:3}}</span>
             <!-- <p class="text-white-50 mb-0" style="margin-bottom: 10px">{{nums.1|floatformat:2}}</p> -->
           </div>
         </div>

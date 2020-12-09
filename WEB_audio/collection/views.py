@@ -76,5 +76,7 @@ def res(request):
     cough.mel = image_path[8:]
     cough.prediction = prediction
     cough.save()
+    print("--------")
+    print(nums)
 
     return render(request, 'res.html', {'prediction':prediction, 'nums':nums})

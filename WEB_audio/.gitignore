@@ -1,8 +1,0 @@
-# django secret key
-Febreath/secret.json
-
-# media
-media/
-
-# not h5
-!*.h5

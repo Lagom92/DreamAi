@@ -179,8 +179,8 @@ dmypy.json
 documents
 data.zip
 drf.zip
-*.h5
-
 
 */inference/model/
 */inference/test_data/
+
+*/media/

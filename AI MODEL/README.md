@@ -17,14 +17,17 @@ b) 데이터를 나눈다.
 데이터 부족을 보완하기 위하여, 1초 단위로 기침소리를 한번 혹은 두번으로 분할한다. 
 
 c) 데이터 augmentation을 진행한다. 
-백색소음을 추가하여 augmentation을 진행한다. (본선 시 오디오 이동, 속도를 빠르기 조절은 데이터 중복 우려로 생략) 
+백색소음을 추가하여 augmentation을 진행한다. <br>
+(본선 시 오디오 이동, 속도를 빠르기 조절은 데이터 중복 우려로 생략) 
 
 d) WAV 파일 변환 후 저장
 WAV 파일을 librosa 라이브러리를 활용하여 mel-spectrogram으로 변환 후 image 파일로 저장한다. 
 
 ### 2. 모델 구축
 a) Densent 201을 활용하여 features을 추출한 후 저장한다. 
+
 b) COVID 와 NON-COVID 로 binary classification을 진행한다. 
+
 c) 89%의 정확도 달성
 
 ### 3. 예측 

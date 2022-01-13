@@ -11,7 +11,7 @@ librosa==0.8.0
 numpy @ file:///C:/ci/numpy_and_numpy_base_1603468620949/work
 opencv-python==4.4.0.40
 pandas==1.0.5
-Pillow==7.2.0
+Pillow==9.0.0
 scikit-learn @ file:///C:/ci/scikit-learn_1592847564598/work
 scikit-surprise==1.1.1
 scipy @ file:///C:/ci/scipy_1592916958183/work
